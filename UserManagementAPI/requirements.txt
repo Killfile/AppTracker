@@ -1,0 +1,14 @@
+Flask
+Flask-SQLAlchemy
+Flask-Login
+Authlib
+Flask-Migrate
+alembic
+Flask-Cors
+google-api-python-client
+google-auth
+PyJWT
+requests
+pymysql
+pydantic
+pytest

@@ -1,0 +1,74 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: apptracker
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: appuserpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - appnet
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: rootpassword
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    networks:
+      - appnet
+
+  usermanagementapi:
+    build:
+      context: ../UserManagementAPI
+      dockerfile: Dockerfile
+      args:
+        DEV_MODE: ${DEV_MODE-false}
+    container_name: usermanagementapi
+    environment:
+      - DATABASE_URL=mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql
+    networks:
+      - appnet
+    volumes:
+      - ../UserManagementAPI:/app:rw
+    command: sh -c "if [ $DEV_MODE = 'true' ]; then FLASK_ENV=development flask run --host=0.0.0.0 --port=5000; else flask run --host=0.0.0.0 --port=5000; fi"
+
+  usermanagementfrontend:
+    build:
+      context: ../UserManagementFrontend
+      dockerfile: Dockerfile
+    container_name: usermanagementfrontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - usermanagementapi
+    networks:
+      - appnet
+    volumes:
+      - ../UserManagementFrontend:/app:rw
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+volumes:
+  mysql_data:
+
+networks:
+  appnet:
+    driver: bridge
