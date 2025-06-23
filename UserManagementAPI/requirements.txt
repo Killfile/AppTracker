@@ -12,3 +12,5 @@ requests
 pymysql
 pydantic
 pytest
+
+git+https://${GITHUB_TOKEN}@github.com/killfile/apptracker_shared.git@main#egg=apptracker_shared

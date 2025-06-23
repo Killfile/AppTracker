@@ -4,7 +4,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 import urllib.parse
 from authlib.integrations.flask_client import OAuth
 from flask_migrate import Migrate, upgrade as flask_migrate_upgrade
-from gmail_gateway import GmailGateway
+from apptracker_shared.gmail.gmail_gateway import GmailGateway
 from flask import g
 from flask_cors import CORS
 import os, json
