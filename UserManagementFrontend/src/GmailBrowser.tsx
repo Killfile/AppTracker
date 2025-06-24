@@ -115,6 +115,47 @@ const GmailBrowser: React.FC<GmailBrowserProps> = ({ jwt }) => {
     fetchMessages();
   };
 
+  const getSender = (payload: any) => {
+    const from = getHeader(payload, 'From');
+    if (!from) return { name: '', email: '' };
+    const match = from.match(/^(.*?)(?:\s*<(.+?)>)?$/);
+    if (match) {
+      return {
+        name: match[2] ? match[1].replace(/"/g, '').trim() : '',
+        email: match[2] || match[1]
+      };
+    }
+    return { name: '', email: from };
+  };
+
+  const getBody = (payload: any): string => {
+    // Try to find the 'text/html' or 'text/plain' part
+    const findPart = (part: any, mime: string): any => {
+      if (!part) return null;
+      if (part.mimeType === mime && part.body && part.body.data) return part.body.data;
+      if (part.parts) {
+        for (const p of part.parts) {
+          const found = findPart(p, mime);
+          if (found) return found;
+        }
+      }
+      return null;
+    };
+    let data = findPart(payload, 'text/html') || findPart(payload, 'text/plain');
+    if (!data && payload.body && payload.body.data) data = payload.body.data;
+    if (!data) return '';
+    try {
+      // Gmail uses URL-safe base64 (replace -_/)
+      const b64 = data.replace(/-/g, '+').replace(/_/g, '/');
+      const decoded = atob(b64);
+      // If HTML, return as is, else wrap in <pre>
+      if (findPart(payload, 'text/html')) return decoded;
+      return `<pre style='margin:0'>${decoded}</pre>`;
+    } catch {
+      return '';
+    }
+  };
+
   return (
     <div style={{ maxWidth: 800, margin: '0 auto', padding: 24, background: palette.ghostWhite, borderRadius: 16, boxShadow: '0 2px 12px rgba(39,45,45,0.08)' }}>
       <h2 style={{ color: palette.purpureus, fontWeight: 700, letterSpacing: 1 }}>Gmail Message Browser</h2>
@@ -200,10 +241,26 @@ const GmailBrowser: React.FC<GmailBrowserProps> = ({ jwt }) => {
         }}
           onClick={() => setSelected(null)}
         >
-          <div style={{ background: '#fff', padding: 32, borderRadius: 8, minWidth: 400, maxWidth: 600, maxHeight: '80vh', overflowY: 'auto', boxShadow: '0 2px 12px rgba(39,45,45,0.12)' }} onClick={e => e.stopPropagation()}>
-            <h3 style={{ color: palette.purpureus, fontWeight: 700 }}>Email Details</h3>
-            <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all', fontSize: 14 }}>{JSON.stringify(selected, null, 2)}</pre>
-            <button onClick={() => setSelected(null)} style={{ marginTop: 16, background: palette.emerald, color: '#fff', border: 'none', borderRadius: 8, padding: '10px 18px', fontWeight: 600, cursor: 'pointer' }}>Close</button>
+          <div style={{ background: '#fff', padding: 0, borderRadius: 8, minWidth: 400, maxWidth: 600, maxHeight: '80vh', overflow: 'hidden', boxShadow: '0 2px 12px rgba(39,45,45,0.12)', display: 'flex', flexDirection: 'column' }} onClick={e => e.stopPropagation()}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', background: palette.gunmetal, color: palette.ghostWhite, padding: '20px 28px 12px 28px', borderTopLeftRadius: 8, borderTopRightRadius: 8 }}>
+              <div>
+                <div style={{ fontWeight: 700, fontSize: 18 }}>{getHeader(selected.payload, 'Subject')}</div>
+                <div style={{ fontSize: 15, marginTop: 4 }}>
+                  <span style={{ fontWeight: 500 }}>{getSender(selected.payload).name}</span>
+                  {getSender(selected.payload).name && ' '}
+                  <span style={{ color: palette.purpureus }}>{`<${getSender(selected.payload).email}>`}</span>
+                </div>
+              </div>
+              <div style={{ fontSize: 14, color: palette.davysGray, marginLeft: 16, minWidth: 120, textAlign: 'right' }}>
+                {formatDate(selected.internalDate)}
+              </div>
+            </div>
+            <div style={{ flex: 1, overflowY: 'auto', background: palette.ghostWhite, padding: 28 }}>
+              <div dangerouslySetInnerHTML={{ __html: getBody(selected.payload) }} style={{ fontSize: 15, color: palette.gunmetal }} />
+            </div>
+            <div style={{ padding: 20, borderTop: `1px solid ${palette.ghostWhite}`, display: 'flex', justifyContent: 'flex-end', background: '#fff', borderBottomLeftRadius: 8, borderBottomRightRadius: 8 }}>
+              <button onClick={() => setSelected(null)} style={{ background: palette.emerald, color: '#fff', border: 'none', borderRadius: 8, padding: '10px 18px', fontWeight: 600, cursor: 'pointer' }}>Close</button>
+            </div>
           </div>
         </div>
       )}
