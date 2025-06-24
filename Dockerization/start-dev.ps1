@@ -1,2 +1,5 @@
 $env:DEV_MODE = "true"
-docker compose up --build
+docker compose build --no-cache
+if ($?) {
+    docker compose up
+}

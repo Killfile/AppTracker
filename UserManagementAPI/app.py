@@ -1,5 +1,4 @@
 from flask import Flask, redirect, url_for, session, request, jsonify
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import urllib.parse
 from authlib.integrations.flask_client import OAuth
@@ -11,12 +10,22 @@ import os, json
 import jwt
 import datetime
 from functools import wraps
+from apptracker_database.user import User as DBUser
+from apptracker_database.database import db
+from apptracker_database.migrations_runner import run_migrations
+
+
+
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'dev_secret_key')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+db.init_app(app)
+
+with app.app_context():
+    run_migrations()
+
 migrate = Migrate(app, db)
 
 login_manager = LoginManager(app)
@@ -41,25 +50,12 @@ google = oauth.register(
     client_kwargs={'scope': 'openid email profile https://www.googleapis.com/auth/gmail.readonly'},
 )
 
+
+
 CORS(app, supports_credentials=True)
 
-class User(UserMixin, db.Model):
-    __tablename__ = 'user'
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    google_id = db.Column(db.String(255), unique=True, nullable=False)
-    google_access_token = db.Column(db.Text, nullable=True)
-    google_refresh_token = db.Column(db.Text, nullable=True)
-    token_expiry = db.Column(db.DateTime, nullable=True)
-    
-    def __init__(self, username, email, google_id, google_access_token=None, google_refresh_token=None, token_expiry=None):
-        self.username = username
-        self.email = email
-        self.google_id = google_id
-        self.google_access_token = google_access_token
-        self.google_refresh_token = google_refresh_token
-        self.token_expiry = token_expiry
+class User(DBUser, UserMixin):
+    pass
 
 @login_manager.user_loader
 def load_user(user_id):
