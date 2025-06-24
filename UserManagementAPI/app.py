@@ -166,28 +166,44 @@ def get_users():
 def landing():
     return f"Welcome, {current_user.username}! This is the landing page."
 
+def is_token_expired(expiry):
+    return expiry and datetime.datetime.utcnow() >= expiry
+
 @app.route('/api/gmail/messages', methods=['GET'])
 @jwt_required
 def gmail_messages():
     user = getattr(g, 'current_user', None)
     if not user:
         return jsonify({'error': 'Not authenticated'}), 401
-    # Use the Google access token from the database
+
     access_token = user.google_access_token
     expiry = user.token_expiry
-    now = datetime.datetime.utcnow()
     if not access_token:
         return jsonify({'error': 'No Google access token found. Please log out and log in again.'}), 401
-    if expiry and now >= expiry:
+    if is_token_expired(expiry):
         return jsonify({'error': 'Google access token expired. Please log out and log in again.'}), 401
-    gateway = GmailGateway(access_token, user_id=user.google_id)
-    max_results = int(request.args.get('maxResults', 10))
-    page_token = request.args.get('pageToken')
+
     try:
-        result = gateway.list_messages(max_results=max_results, page_token=page_token)
+        max_results = min(int(request.args.get('maxResults', 10)), 100)
+    except ValueError:
+        return jsonify({'error': 'Invalid maxResults parameter'}), 400
+
+    page_token = request.args.get('pageToken')
+    search_query = request.args.get('q')  # <-- passed in from frontend
+
+    gateway = GmailGateway(access_token, user_id=user.google_id)
+
+    try:
+        result = gateway.list_messages(
+            max_results=max_results,
+            page_token=page_token,
+            query=search_query
+        )
         return jsonify(result.dict())
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        app.logger.exception("Failed to fetch Gmail messages")
+        return jsonify({'error': 'Internal server error', 'details': str(e)}), 500
+
 
 # --- Auto-apply migrations on startup ---
 def run_migrations():

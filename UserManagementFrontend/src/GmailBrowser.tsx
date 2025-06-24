@@ -31,6 +31,14 @@ const formatDate = (internalDate?: string) => {
   return date.toLocaleString();
 };
 
+const palette = {
+  emerald: '#23ce6b',
+  gunmetal: '#272d2d',
+  ghostWhite: '#f6f8ff',
+  purpureus: '#a846a0',
+  davysGray: '#50514f',
+};
+
 const GmailBrowser: React.FC<GmailBrowserProps> = ({ jwt }) => {
   const [messages, setMessages] = useState<GmailMessage[]>([]);
   const [nextPageToken, setNextPageToken] = useState<string | undefined>(undefined);
@@ -38,12 +46,16 @@ const GmailBrowser: React.FC<GmailBrowserProps> = ({ jwt }) => {
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<GmailMessage | null>(null);
   const [pageTokens, setPageTokens] = useState<string[]>([]);
+  const [search, setSearch] = useState('');
+  const [searching, setSearching] = useState(false);
+  const [searchActive, setSearchActive] = useState(false);
 
-  const fetchMessages = (pageToken?: string) => {
+  const fetchMessages = (pageToken?: string, searchQuery?: string) => {
     setLoading(true);
     setError(null);
     let url = `${API_URL}/api/gmail/messages?maxResults=10`;
     if (pageToken) url += `&pageToken=${pageToken}`;
+    if (searchQuery) url += `&q=${encodeURIComponent(searchQuery)}`;
     fetch(url, {
       headers: { Authorization: `Bearer ${jwt}` },
     })
@@ -66,11 +78,13 @@ const GmailBrowser: React.FC<GmailBrowserProps> = ({ jwt }) => {
   useEffect(() => {
     fetchMessages();
     setPageTokens(['']);
+    setSearch('');
+    setSearchActive(false);
   }, [jwt]);
 
   const handleNext = () => {
     if (nextPageToken) {
-      fetchMessages(nextPageToken);
+      fetchMessages(nextPageToken, searchActive ? search : undefined);
       setPageTokens((prev) => [...prev, nextPageToken]);
     }
   };
@@ -79,33 +93,91 @@ const GmailBrowser: React.FC<GmailBrowserProps> = ({ jwt }) => {
       const prevTokens = [...pageTokens];
       prevTokens.pop();
       const prevToken = prevTokens[prevTokens.length - 1];
-      fetchMessages(prevToken);
+      fetchMessages(prevToken, searchActive ? search : undefined);
       setPageTokens(prevTokens);
     }
   };
 
+  const handleSearch = () => {
+    if (!search.trim()) {
+      handleClear();
+      return;
+    }
+    setSearchActive(true);
+    setPageTokens(['']);
+    fetchMessages(undefined, search);
+  };
+
+  const handleClear = () => {
+    setSearch('');
+    setSearchActive(false);
+    setPageTokens(['']);
+    fetchMessages();
+  };
+
   return (
-    <div style={{ maxWidth: 800, margin: '0 auto', padding: 24 }}>
-      <h2>Gmail Message Browser</h2>
+    <div style={{ maxWidth: 800, margin: '0 auto', padding: 24, background: palette.ghostWhite, borderRadius: 16, boxShadow: '0 2px 12px rgba(39,45,45,0.08)' }}>
+      <h2 style={{ color: palette.purpureus, fontWeight: 700, letterSpacing: 1 }}>Gmail Message Browser</h2>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 16, gap: 8 }}>
+        <input
+          type="text"
+          placeholder="Search messages..."
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          onKeyDown={e => { if (e.key === 'Enter') handleSearch(); }}
+          style={{ flex: 1, padding: '10px 14px', borderRadius: 8, border: `1px solid ${palette.davysGray}`, fontSize: 16, background: palette.ghostWhite }}
+        />
+        <button
+          onClick={handleClear}
+          disabled={!searchActive}
+          style={{
+            background: searchActive ? palette.davysGray : '#ccc',
+            color: '#fff',
+            border: 'none',
+            borderRadius: 8,
+            padding: '10px 18px',
+            fontWeight: 600,
+            cursor: searchActive ? 'pointer' : 'not-allowed',
+            marginRight: 4
+          }}
+        >
+          Clear
+        </button>
+        <button
+          onClick={handleSearch}
+          style={{
+            background: palette.emerald,
+            color: '#fff',
+            border: 'none',
+            borderRadius: 8,
+            padding: '10px 18px',
+            fontWeight: 600,
+            cursor: 'pointer',
+            boxShadow: '0 2px 6px rgba(35,206,107,0.08)'
+          }}
+        >
+          Search
+        </button>
+      </div>
       {loading && <div>Loading...</div>}
-      {error && <div style={{ color: 'red' }}>{error}</div>}
-      <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: 16 }}>
+      {error && <div style={{ color: palette.purpureus, fontWeight: 600 }}>{error}</div>}
+      <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: 16, background: '#fff', borderRadius: 12, overflow: 'hidden', boxShadow: '0 1px 4px rgba(80,81,79,0.06)' }}>
         <thead>
-          <tr style={{ background: '#f0f0f0' }}>
-            <th style={{ textAlign: 'left', padding: 8 }}>Subject</th>
-            <th style={{ textAlign: 'left', padding: 8 }}>From</th>
-            <th style={{ textAlign: 'left', padding: 8 }}>Date</th>
+          <tr style={{ background: palette.gunmetal, color: palette.ghostWhite }}>
+            <th style={{ textAlign: 'left', padding: 12, fontWeight: 700 }}>Subject</th>
+            <th style={{ textAlign: 'left', padding: 12, fontWeight: 700 }}>From</th>
+            <th style={{ textAlign: 'left', padding: 12, fontWeight: 700 }}>Date</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           {messages.map((msg) => (
-            <tr key={msg.id} style={{ borderBottom: '1px solid #eee' }}>
-              <td style={{ padding: 8 }}>{getHeader(msg.payload, 'Subject')}</td>
-              <td style={{ padding: 8 }}>{getHeader(msg.payload, 'From')}</td>
-              <td style={{ padding: 8 }}>{formatDate(msg.internalDate)}</td>
-              <td style={{ padding: 8 }}>
-                <button onClick={() => setSelected(msg)} style={{ fontSize: 14, padding: '4px 12px' }}>
+            <tr key={msg.id} style={{ borderBottom: `1px solid ${palette.ghostWhite}` }}>
+              <td style={{ padding: 12 }}>{getHeader(msg.payload, 'Subject')}</td>
+              <td style={{ padding: 12 }}>{getHeader(msg.payload, 'From')}</td>
+              <td style={{ padding: 12 }}>{formatDate(msg.internalDate)}</td>
+              <td style={{ padding: 12 }}>
+                <button onClick={() => setSelected(msg)} style={{ fontSize: 14, padding: '4px 12px', background: palette.purpureus, color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer' }}>
                   Details
                 </button>
               </td>
@@ -114,10 +186,10 @@ const GmailBrowser: React.FC<GmailBrowserProps> = ({ jwt }) => {
         </tbody>
       </table>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
-        <button onClick={handlePrev} disabled={pageTokens.length <= 1}>
+        <button onClick={handlePrev} disabled={pageTokens.length <= 1} style={{ background: palette.gunmetal, color: palette.ghostWhite, border: 'none', borderRadius: 8, padding: '10px 18px', fontWeight: 600, cursor: pageTokens.length <= 1 ? 'not-allowed' : 'pointer' }}>
           Previous
         </button>
-        <button onClick={handleNext} disabled={!nextPageToken}>
+        <button onClick={handleNext} disabled={!nextPageToken} style={{ background: palette.gunmetal, color: palette.ghostWhite, border: 'none', borderRadius: 8, padding: '10px 18px', fontWeight: 600, cursor: !nextPageToken ? 'not-allowed' : 'pointer' }}>
           Next
         </button>
       </div>
@@ -128,10 +200,10 @@ const GmailBrowser: React.FC<GmailBrowserProps> = ({ jwt }) => {
         }}
           onClick={() => setSelected(null)}
         >
-          <div style={{ background: '#fff', padding: 32, borderRadius: 8, minWidth: 400, maxWidth: 600, maxHeight: '80vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
-            <h3>Email Details</h3>
+          <div style={{ background: '#fff', padding: 32, borderRadius: 8, minWidth: 400, maxWidth: 600, maxHeight: '80vh', overflowY: 'auto', boxShadow: '0 2px 12px rgba(39,45,45,0.12)' }} onClick={e => e.stopPropagation()}>
+            <h3 style={{ color: palette.purpureus, fontWeight: 700 }}>Email Details</h3>
             <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all', fontSize: 14 }}>{JSON.stringify(selected, null, 2)}</pre>
-            <button onClick={() => setSelected(null)} style={{ marginTop: 16 }}>Close</button>
+            <button onClick={() => setSelected(null)} style={{ marginTop: 16, background: palette.emerald, color: '#fff', border: 'none', borderRadius: 8, padding: '10px 18px', fontWeight: 600, cursor: 'pointer' }}>Close</button>
           </div>
         </div>
       )}
