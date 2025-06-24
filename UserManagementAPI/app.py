@@ -3,17 +3,21 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 import urllib.parse
 from authlib.integrations.flask_client import OAuth
 from flask_migrate import Migrate, upgrade as flask_migrate_upgrade
-from apptracker_shared.gmail.gmail_gateway import GmailGateway
 from flask import g
 from flask_cors import CORS
 import os, json
 import jwt
 import datetime
-from functools import wraps
-from apptracker_database.database import SessionLocal
-from apptracker_database.models import User as DBUser
-from apptracker_database.migrations_runner import run_migrations
 
+# Shared Imports
+from apptracker_database.database import SessionLocal
+from apptracker_database.migrations_runner import run_migrations
+from apptracker_shared.gmail.gmail_gateway import GmailGateway
+
+# Local Imports
+from .jwt_required import JWT_ALGORITHM, JWT_EXP_DELTA_SECONDS, JWT_SECRET, jwt_required
+from .user import User
+from .api import api
 
 
 
@@ -21,6 +25,7 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'dev_secret_key')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.register_blueprint(api)
 
 with app.app_context():
     run_migrations()
@@ -51,20 +56,13 @@ google = oauth.register(
 
 CORS(app, supports_credentials=True)
 
-class User(DBUser, UserMixin):
-    @classmethod
-    def get(cls, *args, **kwargs):
-        with SessionLocal() as db:
-            return db.query(cls).get(*args, **kwargs)
-    pass
+
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(int(user_id))
 
-JWT_SECRET = os.getenv('JWT_SECRET', 'dev_jwt_secret')
-JWT_ALGORITHM = 'HS256'
-JWT_EXP_DELTA_SECONDS = 3600
+
 
 @app.route('/login')
 def login():
@@ -153,23 +151,7 @@ def authorized():
 
 
 
-def jwt_required(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        auth_header = request.headers.get('Authorization', None)
-        if not auth_header or not auth_header.startswith('Bearer '):
-            return jsonify({'error': 'Missing or invalid Authorization header'}), 401
-        token = auth_header.split(' ')[1]
-        try:
-            payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
-            user = User.get(payload['user_id'])
-            if not user:
-                return jsonify({'error': 'User not found'}), 401
-            g.current_user = user
-        except Exception as e:
-            return jsonify({'error': 'Invalid or expired token', 'details': str(e)}), 401
-        return f(*args, **kwargs)
-    return decorated
+
 
 @app.route('/users', methods=['GET'])
 @jwt_required
@@ -214,6 +196,8 @@ def run_migrations():
         print("Database migrations applied successfully.", flush=True)
     except Exception as e:
         print(f"Error applying migrations: {e}", flush=True)
+
+
 
 if __name__ == '__main__':
     run_migrations()
