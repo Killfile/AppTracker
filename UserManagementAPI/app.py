@@ -10,8 +10,8 @@ import os, json
 import jwt
 import datetime
 from functools import wraps
-from apptracker_database.user import User as DBUser
-from apptracker_database.database import db
+from apptracker_database.database import SessionLocal
+from apptracker_database.models import User as DBUser
 from apptracker_database.migrations_runner import run_migrations
 
 
@@ -21,12 +21,9 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'dev_secret_key')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(app)
 
 with app.app_context():
     run_migrations()
-
-migrate = Migrate(app, db)
 
 login_manager = LoginManager(app)
 # login_manager.login_view = 'login'  # Remove or comment out this line to avoid mypy/pyright error
@@ -55,11 +52,15 @@ google = oauth.register(
 CORS(app, supports_credentials=True)
 
 class User(DBUser, UserMixin):
+    @classmethod
+    def get(cls, *args, **kwargs):
+        with SessionLocal() as db:
+            return db.query(cls).get(*args, **kwargs)
     pass
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    return User.get(int(user_id))
 
 JWT_SECRET = os.getenv('JWT_SECRET', 'dev_jwt_secret')
 JWT_ALGORITHM = 'HS256'
@@ -90,38 +91,48 @@ def authorized():
     except Exception as e:
         print(f"Error during authorization: {e}", flush=True)
         return jsonify({'error': 'Authorization failed'}), 500
+    
     resp = google.get('userinfo')
     info = resp.json()
     email = info.get('email')
     name = info.get('name', email)
     google_id = info.get('id')
-    user = User.query.filter_by(email=email).first()
+
     # --- Persist Google tokens to DB ---
     access_token = token.get('access_token')
     refresh_token = token.get('refresh_token')
     expires_at = token.get('expires_at')
     expiry_dt = None
+
     if expires_at:
         expiry_dt = datetime.datetime.utcfromtimestamp(expires_at)
-    if not user:
-        user = User(
-            username=name,
-            email=email,
-            google_id=google_id,
-            google_access_token=access_token,
-            google_refresh_token=refresh_token,
-            token_expiry=expiry_dt
-        )
-        db.session.add(user)
-    else:
-        user.google_access_token = access_token
-        if refresh_token:  # Only update if present (Google may not always send it)
-            user.google_refresh_token = refresh_token
-        user.token_expiry = expiry_dt
-    db.session.commit()
-    login_user(user)
+
+    with SessionLocal() as db:
+        user = db.query(User).filter_by(email=email).first()
+        # If user doesn't exist, create a new one
+        if not user:
+            user = User(
+                username=name,
+                email=email,
+                google_id=google_id,
+                google_access_token=access_token,
+                google_refresh_token=refresh_token,
+                token_expiry=expiry_dt
+            )
+            db.add(user)
+        else:
+            user.google_access_token = access_token
+            if refresh_token:  # Only update if present (Google may not always send it)
+                user.google_refresh_token = refresh_token
+            user.token_expiry = expiry_dt
+        db.commit()
+
+        # Possibly not necessary
+        login_user(user)
+
     # Store access token in session for Gmail API use
     session['google_token'] = token
+
     # Issue JWT for the client
     payload = {
         'user_id': user.id,
@@ -129,12 +140,14 @@ def authorized():
         'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=JWT_EXP_DELTA_SECONDS)
     }
     jwt_token = jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
+    
     # Instead of redirect, return JWT to frontend (for SPA)
     user_info = urllib.parse.quote(json.dumps({
     'id': user.id,
     'username': user.username,
     'email': user.email
     }))
+    
     # Redirect to frontend with JWT and user info in query params
     return redirect(f'http://localhost:3000/?jwt={jwt_token}&user={user_info}')
 
@@ -149,7 +162,7 @@ def jwt_required(f):
         token = auth_header.split(' ')[1]
         try:
             payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
-            user = User.query.get(payload['user_id'])
+            user = User.get(payload['user_id'])
             if not user:
                 return jsonify({'error': 'User not found'}), 401
             g.current_user = user
