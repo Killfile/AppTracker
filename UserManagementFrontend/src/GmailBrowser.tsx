@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import MessageMappingModal from './MessageMappingModal';
 
 interface GmailBrowserProps {
   jwt: string | null;
@@ -49,6 +50,9 @@ const GmailBrowser: React.FC<GmailBrowserProps> = ({ jwt }) => {
   const [search, setSearch] = useState('');
   const [searching, setSearching] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
+  const [mappingModalOpen, setMappingModalOpen] = useState(false);
+  const [mappingMsg, setMappingMsg] = useState<GmailMessage | null>(null);
+  const [mappedIds, setMappedIds] = useState<string[]>([]);
 
   const fetchMessages = (pageToken?: string, searchQuery?: string) => {
     setLoading(true);
@@ -74,6 +78,16 @@ const GmailBrowser: React.FC<GmailBrowserProps> = ({ jwt }) => {
         setLoading(false);
       });
   };
+
+  // Fetch mapped message IDs on mount
+  useEffect(() => {
+    if (!jwt) return;
+    fetch(`${API_URL}/api/messages`, {
+      headers: { Authorization: `Bearer ${jwt}` }
+    })
+      .then(res => res.json())
+      .then(data => setMappedIds(data.map((m:any) => m.gmail_message_id)));
+  }, [jwt]);
 
   useEffect(() => {
     fetchMessages();
@@ -217,6 +231,7 @@ const GmailBrowser: React.FC<GmailBrowserProps> = ({ jwt }) => {
               <td style={{ padding: 12 }}>{getHeader(msg.payload, 'Subject')}</td>
               <td style={{ padding: 12 }}>{getHeader(msg.payload, 'From')}</td>
               <td style={{ padding: 12 }}>{formatDate(msg.internalDate)}</td>
+
               <td style={{ padding: 12 }}>
                 <button onClick={() => setSelected(msg)} style={{ fontSize: 14, padding: '4px 12px', background: palette.purpureus, color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer' }}>
                   Details
@@ -258,12 +273,31 @@ const GmailBrowser: React.FC<GmailBrowserProps> = ({ jwt }) => {
             <div style={{ flex: 1, overflowY: 'auto', background: palette.ghostWhite, padding: 28 }}>
               <div dangerouslySetInnerHTML={{ __html: getBody(selected.payload) }} style={{ fontSize: 15, color: palette.gunmetal }} />
             </div>
-            <div style={{ padding: 20, borderTop: `1px solid ${palette.ghostWhite}`, display: 'flex', justifyContent: 'flex-end', background: '#fff', borderBottomLeftRadius: 8, borderBottomRightRadius: 8 }}>
+            <div style={{ padding: 20, borderTop: `1px solid ${palette.ghostWhite}`, display: 'flex', justifyContent: 'flex-end', background: '#fff', borderBottomLeftRadius: 8, borderBottomRightRadius: 8, gap: 12 }}>
+              {mappedIds.includes(selected.id) ? (
+                <button style={{ background: palette.emerald, color: '#fff', border: 'none', borderRadius: 8, padding: '10px 18px', fontWeight: 600, cursor: 'not-allowed' }} disabled>
+                  Mapped
+                </button>
+              ) : (
+                <button onClick={() => { setMappingMsg(selected); setMappingModalOpen(true); }} style={{ background: palette.purpureus, color: '#fff', border: 'none', borderRadius: 8, padding: '10px 18px', fontWeight: 600, cursor: 'pointer' }}>
+                  Map Email
+                </button>
+              )}
               <button onClick={() => setSelected(null)} style={{ background: palette.emerald, color: '#fff', border: 'none', borderRadius: 8, padding: '10px 18px', fontWeight: 600, cursor: 'pointer' }}>Close</button>
             </div>
           </div>
         </div>
       )}
+      <MessageMappingModal
+        open={mappingModalOpen}
+        onClose={() => setMappingModalOpen(false)}
+        jwt={jwt || ''}
+        gmailMessage={mappingMsg}
+        onMapped={() => {
+          setMappingModalOpen(false);
+          setMappedIds(ids => mappingMsg ? [...ids, mappingMsg.id] : ids);
+        }}
+      />
     </div>
   );
 };

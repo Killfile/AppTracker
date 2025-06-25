@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify, g
-from apptracker_database.models import Application, Action, Message, Company
+from apptracker_database.models import Application, Action, Message, Company, EmailAddress
 from apptracker_database.database import SessionLocal
 from sqlalchemy.orm import joinedload
-from sqlalchemy import or_
+from sqlalchemy import func, or_
 from .app import jwt_required
 
 api = Blueprint('api', __name__)
@@ -12,6 +12,8 @@ api = Blueprint('api', __name__)
 @jwt_required
 def create_company():
     data = request.json
+    if data is None:
+        return jsonify({'error': 'Invalid input; no json data found'}), 400
     with SessionLocal() as db:
         company = Company(name=data['name'])
         db.add(company)
@@ -42,6 +44,8 @@ def search_companies():
 @jwt_required
 def update_company(company_id):
     data = request.json
+    if data is None:
+        return jsonify({'error': 'Invalid input; no json data found'}), 400
     with SessionLocal() as db:
         company = db.query(Company).get(company_id)
         if not company:
@@ -66,6 +70,8 @@ def delete_company(company_id):
 @jwt_required
 def create_application():
     data = request.json
+    if data is None:
+        return jsonify({'error': 'Invalid input; no json data found'}), 400
     with SessionLocal() as db:
         app = Application(
             title=data['title'],
@@ -101,6 +107,8 @@ def search_applications():
 @jwt_required
 def update_application(app_id):
     data = request.json
+    if data is None:
+        return jsonify({'error': 'Invalid input; no json data found'}), 400
     with SessionLocal() as db:
         app = db.query(Application).get(app_id)
         if not app:
@@ -127,6 +135,8 @@ def delete_application(app_id):
 @jwt_required
 def create_message():
     data = request.json
+    if data is None:
+        return jsonify({'error': 'Invalid input; no json data found'}), 400
     with SessionLocal() as db:
         msg = Message(
             subject=data['subject'],
@@ -165,6 +175,8 @@ def search_messages():
 @jwt_required
 def update_message(msg_id):
     data = request.json
+    if data is None:
+        return jsonify({'error': 'Invalid input; no json data found'}), 400
     with SessionLocal() as db:
         msg = db.query(Message).get(msg_id)
         if not msg:
@@ -194,6 +206,8 @@ def delete_message(msg_id):
 @jwt_required
 def create_action():
     data = request.json
+    if data is None:
+        return jsonify({'error': 'Invalid input; no json data found'}), 400
     with SessionLocal() as db:
         action = Action(
             date_logged=data['date_logged'],
@@ -229,6 +243,9 @@ def search_actions():
 @jwt_required
 def update_action(action_id):
     data = request.json
+    if data is None:
+        return jsonify({'error': 'Invalid input'}), 400
+    
     with SessionLocal() as db:
         action = db.query(Action).get(action_id)
         if not action:
@@ -248,5 +265,73 @@ def delete_action(action_id):
         if not action:
             return jsonify({'error': 'Not found'}), 404
         db.delete(action)
+        db.commit()
+        return '', 204
+
+# --- EmailAddress CRUD ---
+@api.route('/api/email_addresses', methods=['POST'])
+@jwt_required
+def create_email_address():
+    data = request.json or {}
+    if data is None:
+        return jsonify({'error': 'Invalid input'}), 400
+    email_address = data.get('email', '').strip().lower()
+    company_id = data.get('company_id')
+    if not email_address or not company_id:
+        return jsonify({'error': 'Email and company_id are required'}), 400
+    
+    
+    with SessionLocal() as db:
+        email_address = EmailAddress(
+            email=email_address,
+            company_id=company_id
+        )
+        db.add(email_address)
+        db.commit()
+        return jsonify({'id': email_address.id, 'email': email_address.email, 'company_id': email_address.company_id}), 201
+
+@api.route('/api/email_addresses/<int:email_id>', methods=['GET'])
+@jwt_required
+def get_email_address(email_id):
+    with SessionLocal() as db:
+        email_address = db.query(EmailAddress).get(email_id)
+        if not email_address:
+            return jsonify({'error': 'Not found'}), 404
+        return jsonify({'id': email_address.id, 'email': email_address.email, 'company_id': email_address.company_id})
+
+@api.route('/api/email_addresses', methods=['GET'])
+@jwt_required
+def search_email_addresses():
+    q = request.args.get('q', '')
+    with SessionLocal() as db:
+        query = db.query(EmailAddress)
+        if q:
+            query = query.filter(EmailAddress.email == func.lower(q))
+        email_addresses = query.all()
+        return jsonify([
+            {'id': e.id, 'email': e.email, 'company_id': e.company_id} for e in email_addresses
+        ])
+
+@api.route('/api/email_addresses/<int:email_id>', methods=['PUT'])
+@jwt_required
+def update_email_address(email_id):
+    data = request.json or {}
+    with SessionLocal() as db:
+        email_address = db.query(EmailAddress).get(email_id)
+        if not email_address:
+            return jsonify({'error': 'Not found'}), 404
+        email_address.email = data.get('email', email_address.email)
+        email_address.company_id = data.get('company_id', email_address.company_id)
+        db.commit()
+        return jsonify({'id': email_address.id, 'email': email_address.email, 'company_id': email_address.company_id})
+
+@api.route('/api/email_addresses/<int:email_id>', methods=['DELETE'])
+@jwt_required
+def delete_email_address(email_id):
+    with SessionLocal() as db:
+        email_address = db.query(EmailAddress).get(email_id)
+        if not email_address:
+            return jsonify({'error': 'Not found'}), 404
+        db.delete(email_address)
         db.commit()
         return '', 204
