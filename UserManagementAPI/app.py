@@ -27,6 +27,14 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'mysql+pymysql
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.register_blueprint(api)
 
+google_secrets = {
+    'client_id': os.getenv('GOOGLE_CLIENT_ID'),
+    'client_secret': os.getenv('GOOGLE_CLIENT_SECRET'),
+    'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
+    'token_uri': 'https://oauth2.googleapis.com/token',
+    'redirect_uris': ['http://localhost:5000/oauth2callback'],
+}
+
 with app.app_context():
     run_migrations()
 
@@ -37,6 +45,15 @@ login_manager = LoginManager(app)
 oauth = OAuth(app)
 with open(os.path.join(os.path.dirname(__file__), 'google_oauth_secrets.json')) as f:
     google_secrets = json.load(f)['web']
+
+scopes = [
+    'openid',
+    'email',
+    'profile',
+    'https://www.googleapis.com/auth/gmail.readonly',
+    'https://www.googleapis.com/auth/gmail.modify',
+    "https://www.googleapis.com/auth/gmail.labels"
+]
 
 google = oauth.register(
     name='google',
@@ -49,10 +66,8 @@ google = oauth.register(
     api_base_url='https://www.googleapis.com/oauth2/v1/',
     userinfo_endpoint='https://www.googleapis.com/oauth2/v1/userinfo',
     server_metadata_url= 'https://accounts.google.com/.well-known/openid-configuration',
-    client_kwargs={'scope': 'openid email profile https://www.googleapis.com/auth/gmail.readonly'},
+    client_kwargs={'scope': ' '.join(scopes)},
 )
-
-
 
 CORS(app, supports_credentials=True)
 
@@ -67,7 +82,7 @@ def load_user(user_id):
 @app.route('/login')
 def login():
     redirect_uri = url_for('authorized', _external=True)
-    return google.authorize_redirect(redirect_uri)
+    return google.authorize_redirect(redirect_uri, access_type='offline', prompt='consent') # Offline and Consent request the refresh token
 
 @app.route('/logout')
 @login_required
@@ -177,6 +192,7 @@ def gmail_messages():
         return jsonify({'error': 'Not authenticated'}), 401
 
     access_token = user.google_access_token
+    refresh_token = user.google_refresh_token
     expiry = user.token_expiry
     if not access_token:
         return jsonify({'error': 'No Google access token found. Please log out and log in again.'}), 401
@@ -191,7 +207,7 @@ def gmail_messages():
     page_token = request.args.get('pageToken')
     search_query = request.args.get('q')  # <-- passed in from frontend
 
-    gateway = GmailGateway(access_token, user_id=user.google_id)
+    gateway = GmailGateway(access_token, refresh_token, user_id=user.google_id)
 
     try:
         result = gateway.list_messages(

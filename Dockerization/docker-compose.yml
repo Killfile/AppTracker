@@ -73,6 +73,211 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
 
+  kafka:
+    image: bitnami/kafka:3.7.0
+    container_name: kafka
+    restart: always
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    networks:
+      - appnet
+    healthcheck:
+      test: ["CMD", "kafka-topics.sh", "--bootstrap-server", "localhost:9092", "--list"]
+      interval: 10s
+      timeout: 5s
+      retries: 2
+      start_period: 120s
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    ports:
+      - "8081:8080"
+    depends_on:
+      - kafka
+    environment:
+      DYNAMIC_CONFIG_ENABLED: 'true'
+      KAFKA_CLUSTERS_0_NAME: local-kafka
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+    networks:
+      - appnet
+
+  zookeeper:
+    image: bitnami/zookeeper:3.8.4
+    container_name: zookeeper
+    restart: always
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    ports:
+      - "2181:2181"
+    networks:
+      - appnet
+
+  worker_gmailingestion:
+    build:
+      context: ../GmailIngestionWorker
+      dockerfile: Dockerfile
+      args:
+        DEV_MODE: ${DEV_MODE-false}
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+    container_name: worker_gmailingestion
+    depends_on:
+      kafka:
+        condition: service_healthy
+    networks:
+      - appnet
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - DATABASE_URL=mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_PROJECT_ID=${GOOGLE_PROJECT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+    volumes:
+      - ../GmailIngestionWorker:/app:rw
+    command: python worker__gmail_history_ingestor.py
+
+  worker_keywordclassification:
+    build:
+      context: ../GmailIngestionWorker
+      dockerfile: Dockerfile
+      args:
+        DEV_MODE: ${DEV_MODE-false}
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+    container_name: worker_keywordclassification
+    depends_on:
+      kafka:
+        condition: service_healthy
+    networks:
+      - appnet
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - DATABASE_URL=mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_PROJECT_ID=${GOOGLE_PROJECT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+    volumes:
+      - ../GmailIngestionWorker:/app:rw
+    command: python worker__keyword_classifier.py
+
+  worker_timeshift:
+    build:
+      context: ../GmailIngestionWorker
+      dockerfile: Dockerfile
+      args:
+        DEV_MODE: ${DEV_MODE-false}
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+    container_name: worker_timeshift
+    depends_on:
+      kafka:
+        condition: service_healthy
+    networks:
+      - appnet
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - DATABASE_URL=mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_PROJECT_ID=${GOOGLE_PROJECT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+    volumes:
+      - ../GmailIngestionWorker:/app:rw
+    command: python worker__timeshift.py
+
+  worker_domaininterest:
+    build:
+      context: ../GmailIngestionWorker
+      dockerfile: Dockerfile
+      args:
+        DEV_MODE: ${DEV_MODE-false}
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+    container_name: worker_domaininterest
+    depends_on:
+      kafka:
+        condition: service_healthy
+    networks:
+      - appnet
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - DATABASE_URL=mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_PROJECT_ID=${GOOGLE_PROJECT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+    volumes:
+      - ../GmailIngestionWorker:/app:rw
+    command: python worker__domain_interest.py
+
+  worker_save_keyword_matches:
+    build:
+      context: ../GmailIngestionWorker
+      dockerfile: Dockerfile
+      args:
+        DEV_MODE: ${DEV_MODE-false}
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+    container_name: worker_save_keyword_matches
+    depends_on:
+      kafka:
+        condition: service_healthy
+    networks:
+      - appnet
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - DATABASE_URL=mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_PROJECT_ID=${GOOGLE_PROJECT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+    volumes:
+      - ../GmailIngestionWorker:/app:rw
+    command: python worker__write_messages_to_db.py gmail-keyword-match
+
+  worker_save_domain_matches:
+    build:
+      context: ../GmailIngestionWorker
+      dockerfile: Dockerfile
+      args:
+        DEV_MODE: ${DEV_MODE-false}
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+    container_name: worker_save_domain_matches
+    depends_on:
+      kafka:
+        condition: service_healthy
+    networks:
+      - appnet
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - DATABASE_URL=mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_PROJECT_ID=${GOOGLE_PROJECT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+    volumes:
+      - ../GmailIngestionWorker:/app:rw
+    command: python worker__write_messages_to_db.py gmail-domain-interest
+
 volumes:
   mysql_data:
 

@@ -1,0 +1,61 @@
+application_detection:
+  subject_keywords:
+    - applied
+    - application received
+    - thank you for applying
+    - submitted your resume
+    - we appreciate your interest
+    - regarding your application
+    - update on your application
+    - your application for * at
+    - update on your candidacy
+    - Thanks for applying
+    - Thank you for your application
+    - application status
+    - Important information about your application
+
+
+
+  body_phrases:
+    - we’ve received your application
+    - your application is under review
+    - we’re excited to consider you
+    - next steps in the hiring process
+    - your interview is scheduled
+    - decided to move forward with other candidates
+    - who more closely match our needs at this time
+    - other applicants whose skills and background more closely
+    - moving forward with your application
+    - thank you for considering a career opportunity
+    - Unfortunately, we won't be moving forward at this time
+    - Thank you for taking the time to apply
+    - We really appreciate you taking the time to apply
+    - We will keep your resume on file
+
+  sender_patterns:
+    - 'no-reply@*.jobs'
+    - 'noreply@*.greenhouse.io'
+    - 'no-reply@*.greenhouse-mail.io'
+    - 'do-not-reply@*.lever.co'
+    - 'globalhr@myworkday.com'
+    - 'no-reply@ashbyhq.com'
+    - 'notifications@app.bamboohr.com'
+    - 'no-reply@ats.rippling.com'
+    - '*@myworkday.com'
+
+  sender_exclude_patterns:
+    - 'chris.thomas@cleaner.codes'
+
+  exclude_if_subject_contains:
+    - advertisement
+    - newsletter
+    - survey
+    - you’re getting paid today
+    - Update on your Gusto benefits
+    - You can now set beneficiaries
+    - You just received
+    - Request time off with Gusto
+    - Please review your Affordable Care Act
+    - Please review your Summary of Health Plan
+    - 'Security Alert:'
+    - Reset password
