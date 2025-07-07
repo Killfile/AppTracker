@@ -1,0 +1,10 @@
+email_blacklist:
+  - ^no-reply@(\w{2}\.)?greenhouse\.io$
+  - send\.applicantemails\.com
+email_patterns:
+  - ^([\w\s]*) <no-reply@hire.lever.co>$
+  - ^([\w\s]*) Hiring Team <no-reply@ashbyhq.com>$
+  - ^([\w\s]*) Recruitment <no-reply@ashbyhq.com>$
+  - ^([\w\s]*?)(?:Workday)? <\w+@myworkday.com>$
+  - ^WorkdayDoNotReply ([\w\s]*?) <\w+@myworkday.com>$
+  - \"Workday\s?@\s?(\w*?)\" <\w+@myworkday.com>
