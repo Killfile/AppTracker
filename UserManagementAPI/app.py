@@ -13,11 +13,19 @@ import datetime
 from apptracker_database.database import SessionLocal
 from apptracker_database.migrations_runner import run_migrations
 from apptracker_shared.gmail.gmail_gateway import GmailGateway
+from apptracker_database.user_dao import UserDAO
+from apptracker_database.models import User
 
 # Local Imports
 from .jwt_required import JWT_ALGORITHM, JWT_EXP_DELTA_SECONDS, JWT_SECRET, jwt_required
-from .user import User
-from .api import api
+from .user import AppUser
+from .apis.company_api import company_api
+from .apis.actions_api import actions_api
+from .apis.applications_api import applications_api
+from .apis.email_api import email_api
+from .apis.messages_api import messages_api
+from .email_browser.gmail_api import gmail_api
+
 
 
 
@@ -25,7 +33,12 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'dev_secret_key')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.register_blueprint(api)
+app.register_blueprint(company_api)
+app.register_blueprint(actions_api)
+app.register_blueprint(applications_api)
+app.register_blueprint(email_api)
+app.register_blueprint(messages_api)
+app.register_blueprint(gmail_api, url_prefix='/gmail')
 
 google_secrets = {
     'client_id': os.getenv('GOOGLE_CLIENT_ID'),
@@ -76,8 +89,6 @@ CORS(app, supports_credentials=True)
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(int(user_id))
-
-
 
 @app.route('/login')
 def login():
@@ -141,7 +152,7 @@ def authorized():
         db.commit()
 
         # Possibly not necessary
-        login_user(user)
+        login_user(AppUser(user))
 
     # Store access token in session for Gmail API use
     session['google_token'] = token
@@ -165,9 +176,6 @@ def authorized():
     return redirect(f'http://localhost:3000/?jwt={jwt_token}&user={user_info}')
 
 
-
-
-
 @app.route('/users', methods=['GET'])
 @jwt_required
 def get_users():
@@ -181,46 +189,6 @@ def get_users():
 def landing():
     return f"Welcome, {current_user.username}! This is the landing page."
 
-def is_token_expired(expiry):
-    return expiry and datetime.datetime.utcnow() >= expiry
-
-@app.route('/api/gmail/messages', methods=['GET'])
-@jwt_required
-def gmail_messages():
-    user = getattr(g, 'current_user', None)
-    if not user:
-        return jsonify({'error': 'Not authenticated'}), 401
-
-    access_token = user.google_access_token
-    refresh_token = user.google_refresh_token
-    expiry = user.token_expiry
-    if not access_token:
-        return jsonify({'error': 'No Google access token found. Please log out and log in again.'}), 401
-    if is_token_expired(expiry):
-        return jsonify({'error': 'Google access token expired. Please log out and log in again.'}), 401
-
-    try:
-        max_results = min(int(request.args.get('maxResults', 10)), 100)
-    except ValueError:
-        return jsonify({'error': 'Invalid maxResults parameter'}), 400
-
-    page_token = request.args.get('pageToken')
-    search_query = request.args.get('q')  # <-- passed in from frontend
-
-    gateway = GmailGateway(access_token, refresh_token, user_id=user.google_id)
-
-    try:
-        result = gateway.list_messages(
-            max_results=max_results,
-            page_token=page_token,
-            query=search_query
-        )
-        return jsonify(result.dict())
-    except Exception as e:
-        app.logger.exception("Failed to fetch Gmail messages")
-        return jsonify({'error': 'Internal server error', 'details': str(e)}), 500
-
-
 # --- Auto-apply migrations on startup ---
 def run_migrations():
     try:
@@ -228,7 +196,6 @@ def run_migrations():
         print("Database migrations applied successfully.", flush=True)
     except Exception as e:
         print(f"Error applying migrations: {e}", flush=True)
-
 
 
 if __name__ == '__main__':

@@ -27,16 +27,16 @@ def main():
     with SessionLocal() as db:
         userDAO = UserDAO(db)
         all_users = userDAO.get_all_users()
-        all_user_history_fetchers:List[GmailMessageHistoryFetcher] = []
-        for user in all_users:
-            if not user.google_access_token or not user.google_id:
-                print(f"Skipping user {user.username} due to missing Google access token or ID.")
-                continue
-            try:
-                fetcher = GmailMessageHistoryFetcher(user)
-                all_user_history_fetchers.append(fetcher)
-            except ValueError as e:
-                print(f"Error initializing fetcher for user {user.username}: {e}")
+    all_user_history_fetchers:List[GmailMessageHistoryFetcher] = []
+    for user in all_users:
+        if not user.google_access_token or not user.google_id:
+            print(f"Skipping user {user.username} due to missing Google access token or ID.")
+            continue
+        try:
+            fetcher = GmailMessageHistoryFetcher(user)
+            all_user_history_fetchers.append(fetcher)
+        except ValueError as e:
+            print(f"Error initializing fetcher for user {user.username}: {e}")
     
 
     

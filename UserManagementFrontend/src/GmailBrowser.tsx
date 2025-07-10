@@ -57,7 +57,7 @@ const GmailBrowser: React.FC<GmailBrowserProps> = ({ jwt }) => {
   const fetchMessages = (pageToken?: string, searchQuery?: string) => {
     setLoading(true);
     setError(null);
-    let url = `${API_URL}/api/gmail/messages?maxResults=10`;
+    let url = `${API_URL}/gmail/messages?maxResults=10`;
     if (pageToken) url += `&pageToken=${pageToken}`;
     if (searchQuery) url += `&q=${encodeURIComponent(searchQuery)}`;
     fetch(url, {

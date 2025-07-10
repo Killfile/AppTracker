@@ -42,6 +42,64 @@ const MessageMappingModal: React.FC<MessageMappingModalProps> = ({ open, onClose
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
+
+  /**
+   * Extracts the plain text message body from a Gmail message object.
+   * Handles multipart and base64url decoding.
+   */
+  function getMessageBody(gmailMessage: any): string {
+    if (!gmailMessage?.payload) return '';
+
+    // Helper to decode base64url
+    const decode = (str: string) => {
+      try {
+        // Gmail uses base64url (replace -/_)
+        const b64 = str.replace(/-/g, '+').replace(/_/g, '/');
+        // Pad with '=' if needed
+        const pad = b64.length % 4 === 0 ? '' : '='.repeat(4 - (b64.length % 4));
+        return decodeURIComponent(escape(window.atob(b64 + pad)));
+      } catch {
+        return '';
+      }
+    };
+
+    // Recursively search for 'text/plain' part
+    function findPlainTextPart(payload: any): string | null {
+      if (!payload) return null;
+      if (payload.mimeType === 'text/plain' && payload.body?.data) {
+        return decode(payload.body.data);
+      }
+      if (payload.parts && Array.isArray(payload.parts)) {
+        for (const part of payload.parts) {
+          const result = findPlainTextPart(part);
+          if (result) return result;
+        }
+      }
+      return null;
+    }
+
+    // Try to get plain text, fallback to HTML if needed
+    const plain = findPlainTextPart(gmailMessage.payload);
+    if (plain) return plain;
+
+    // Fallback: try to get 'text/html' part
+    function findHtmlPart(payload: any): string | null {
+      if (!payload) return null;
+      if (payload.mimeType === 'text/html' && payload.body?.data) {
+        return decode(payload.body.data);
+      }
+      if (payload.parts && Array.isArray(payload.parts)) {
+        for (const part of payload.parts) {
+          const result = findHtmlPart(part);
+          if (result) return result;
+        }
+      }
+      return null;
+    }
+    const html = findHtmlPart(gmailMessage.payload);
+    return html || '';
+  }
+
   // --- Company Typeahead ---
   const searchCompanies = async (q: string) => {
     setCompanyLoading(true);
@@ -118,8 +176,10 @@ const MessageMappingModal: React.FC<MessageMappingModalProps> = ({ open, onClose
     if (!selectedCompany || !selectedApp || !selectedAction) return;
     setSaving(true);
     setError('');
+
     try {
       // 1. Extract sender email from gmailMessage
+      console.log('Extracting sender email from Gmail message...');
       const fromHeader = gmailMessage.payload?.headers?.find((h:any) => h.name.toLowerCase() === 'from');
       let senderEmail = '';
       if (fromHeader) {
@@ -129,42 +189,43 @@ const MessageMappingModal: React.FC<MessageMappingModalProps> = ({ open, onClose
       }
       if (!senderEmail) throw new Error('Could not extract sender email');
 
-      // 2. Search for email address
-      let emailAddressId: number | null = null;
-      const searchRes = await fetch(`${API_URL}/api/email_addresses?q=${encodeURIComponent(senderEmail)}`, {
-        headers: { Authorization: `Bearer ${jwt}` }
+      // 2. Upsert email address
+      console.log('Searching for email address:', senderEmail);
+      const upsertRequest = await fetch(`${API_URL}/api/email_address`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${jwt}` },
+        body: JSON.stringify({ email: senderEmail})
       });
-      const searchData = await searchRes.json();
-      if (Array.isArray(searchData) && searchData.length > 0) {
-        emailAddressId = searchData[0].id;
-      } else {
-        // 3. Create email address
-        const createRes = await fetch(`${API_URL}/api/email_addresses`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${jwt}` },
-          body: JSON.stringify({ email: senderEmail, company_id: selectedCompany.id })
-        });
-        const createData = await createRes.json();
-        emailAddressId = createData.id;
+      if (!upsertRequest.ok) {
+        throw new Error('Failed to upsert email address');
       }
+      const upsertData = await upsertRequest.json();
+      console.log('Upserted email address:', upsertData);
+      let emailAddressId = upsertData.id;
       if (!emailAddressId) throw new Error('Could not resolve email address ID');
 
-      // 4. Create Message
-      const msgRes = await fetch(`${API_URL}/api/messages`, {
-        method: 'POST',
+      let upsert = false;
+      let msgRes = null;
+     
+      // 3. Upsert message
+      msgRes = await fetch(`${API_URL}/api/messages/upsert`, {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${jwt}` },
         body: JSON.stringify({
           subject: gmailMessage.payload ? gmailMessage.payload.headers.find((h:any) => h.name==='Subject')?.value : '',
           date_received: new Date(Number(gmailMessage.internalDate)).toISOString().slice(0,10),
-          message_body: '', // Optionally decode and store
+          message_body: getMessageBody(gmailMessage),
           gmail_message_id: gmailMessage.id,
           user_id: null, // backend will use JWT
           company_id: selectedCompany.id,
           email_address_id: emailAddressId
         })
       });
+      
+      
       const msgData = await msgRes.json();
       // 5. Create Action
+      console.log('Creating action record for message:', msgData.id);
       await fetch(`${API_URL}/api/actions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${jwt}` },

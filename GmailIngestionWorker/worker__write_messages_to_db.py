@@ -51,7 +51,7 @@ class MessageDBWorker:
                     user_id = value["user_id"])
                 
                 orchestrator.add(message=db_message, email_address=db_email)
-                print(f"✉️💾 Message saved to database.")
+            print(f"✉️💾 Message saved to database.")
         
 
     

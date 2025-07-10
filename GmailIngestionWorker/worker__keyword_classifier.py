@@ -83,8 +83,8 @@ def get_gateway_by_user_id(user_id):
     with SessionLocal() as db:
         userDAO = UserDAO(db)
         user = userDAO.get_user_by_id(user_id)
-        if not user:
-            raise ValueError(f"User with ID {user_id} not found.")
+    if not user:
+        raise ValueError(f"User with ID {user_id} not found.")
     gateway = GmailGateway(access_token=user.google_access_token, refresh_token=user.google_refresh_token, user_id=user.google_id)
     return gateway
 

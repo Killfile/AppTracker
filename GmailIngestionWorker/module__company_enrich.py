@@ -105,13 +105,13 @@ class PatternEmailEnrichment(AbstractMessageEnrichmentStage):
 
         company_dao = CompanyDAO(db)
         company = company_dao.get_company_by_name(most_common_company)
+        if not company:
+            company = company_dao.create_company(most_common_company)
+        
         if company:
             message.company_id = company.id
             return (message, True)
         
-        new_company = company_dao.create_company(most_common_company)
-        message.company_id = new_company.id
-
         return (message, True)
 
                 
@@ -155,7 +155,7 @@ class CompanyEnrichmentModule:
                     company = self._get_company_from_company_name(company_name, db)
 
 
-            db.commit()
+            
 
         
             
