@@ -1,20 +1,17 @@
-from apptracker_database.user_dao import UserDAO
 from apptracker_database.models import User
-from apptracker_shared.gmail.gmail_gateway import GmailGateway 
+from apptracker_shared.gmail.gmail_gateway import GmailGateway
+
+from gmail_gateway_factory import GmailGatewayFactory 
 
 class GmailMessageHistoryFetcher:
     CRAWL_COMPLETE = "CRAWL_COMPLETE"
 
     def __init__(self, user: User):
-        self._user:User = user
-      
-        if not user.google_access_token or not user.google_id:
-            raise ValueError(f"No Google access token and/or google_id found. Refresh login for " + user.username)
-
+        self.user_id = user.id
         self.max_results = 100
         self.page_token = None
 
-        self.gateway = GmailGateway(self._user.google_access_token, self._user.google_refresh_token, user_id=self._user.google_id)
+        self.gateway = GmailGatewayFactory.build(user.id)
 
     def fetch_history_page(self) -> list:
         if self.page_token == GmailMessageHistoryFetcher.CRAWL_COMPLETE:

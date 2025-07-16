@@ -17,13 +17,22 @@ class KeywordClassifier:
             raise FileNotFoundError(f"Configuration file {path} does not exist.")
         with open(path, "r", encoding="utf-8") as f:
             return yaml.safe_load(f)
+        
+    def is_blacklisted(self, subject: str, body: str, sender: str) -> bool:
+        subject_lc = subject.lower()
+        body_lc = body.lower()
+
+        if any(excl in subject_lc for excl in self.config["application_detection"]["exclude_if_subject_contains"]):
+            return True
+        
+        return False
 
     def is_application_related(self, subject: str, body: str, sender: str) -> KeywordClassifications:
         subject_lc = subject.lower()
         body_lc = body.lower()
 
         # Process exclusions first; otherwise fast-returns might be invalid
-        if any(excl in subject_lc for excl in self.config["application_detection"]["exclude_if_subject_contains"]):
+        if self.is_blacklisted(subject=subject, body=body, sender=sender):
             return KeywordClassifications.EXCLUDE
         
         if any(kw in subject_lc for kw in self.config["application_detection"]["subject_keywords"]):

@@ -1,28 +1,21 @@
-from kafka import KafkaConsumer, KafkaProducer
-import json
-import os
 from kafka.admin import KafkaAdminClient, NewTopic
 from kafka.errors import TopicAlreadyExistsError
-from kafka import KafkaConsumer
 import time
 from kafka.errors import NoBrokersAvailable
+from gmail_gateway_factory import GmailGatewayFactory
 from retry_decorater import retry
 from gmail_message_adapter import GmailMessageAdapter
 from kafka_constants import KAFKA_BOOTSTRAP_SERVERS
 import helper_functions as kafka_factory
 
 from keyword_classifier import KeywordClassifier, KeywordClassifications
-import base64
-from functools import lru_cache
-from apptracker_database.user_dao import UserDAO
-from apptracker_database.database import SessionLocal
-from apptracker_shared.gmail.gmail_gateway import GmailGateway 
 
 CONSUMER_TOPIC = 'gmail-messages'
 KEYWORD_MATCH_TOPIC = 'gmail-keyword-match'
 KEYWORD_MISS_TOPIC = 'gmail-keyword-miss'
 DOMAIN_MAPPING_TOPIC = "user-domain-mapping"
 DEAD_LETTER_QUEUE = "keyword_DLQ"
+LABEL_TOPIC = "gmail-label-requests"
 
 @retry(NoBrokersAvailable, max_retries=10, initial_delay=5, exponential=False, jitter=0)
 def create_compact_topic(topic_name, bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS):
@@ -75,18 +68,18 @@ domain_mapping_producer = kafka_factory.initialize_kafka_producer_with_existing_
 keyword_match_producer = kafka_factory.initialize_kafka_producer(KEYWORD_MATCH_TOPIC)
 keyword_miss_producer = kafka_factory.initialize_kafka_producer(KEYWORD_MISS_TOPIC)
 dlq_producer = kafka_factory.initialize_kafka_producer_with_existing_topic(DEAD_LETTER_QUEUE)
+gmail_label_producer = kafka_factory.initialize_kafka_producer(LABEL_TOPIC)
 
 consumer = kafka_factory.initialize_kafka_consumer(CONSUMER_TOPIC, name="keyword-classifier-worker")
 
-@lru_cache(maxsize=128)
-def get_gateway_by_user_id(user_id):
-    with SessionLocal() as db:
-        userDAO = UserDAO(db)
-        user = userDAO.get_user_by_id(user_id)
-    if not user:
-        raise ValueError(f"User with ID {user_id} not found.")
-    gateway = GmailGateway(access_token=user.google_access_token, refresh_token=user.google_refresh_token, user_id=user.google_id)
-    return gateway
+def label_message(gateway, user_id, label_name, message_id):
+    label_id = gateway.create_or_get_label(label_name=label_name)
+    message = {
+        "user_id": user_id,
+        "label_id": label_id,
+        "message_id": message_id}
+    gmail_label_producer.send(message)
+    
 
 def main():
     print('EmailAnalysisWorker started. Waiting for messages...')
@@ -102,13 +95,12 @@ def main():
         body = adapter.body
         
         user_id = inner["user_id"]
-        gateway = get_gateway_by_user_id(user_id)
+        gateway = GmailGatewayFactory.build(user_id)
 
         classification = classifier.is_application_related(subject, body, sender)
 
         if classification == KeywordClassifications.HIT:
-            label_id = gateway.create_or_get_label(label_name="AppTracker: Application Related")
-            gateway.apply_label_to_message(message_id=adapter.gmail_message_id, label_id=label_id)
+            label_message(gateway, user_id, "AppTracker: Application Related", adapter.gmail_message_id)
             keyword_match_producer.send(inner)
             print(f'🔑✅: {adapter.gmail_message_id}; current time is {time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}', flush=True)
             

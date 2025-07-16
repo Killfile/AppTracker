@@ -91,9 +91,9 @@ services:
       - appnet
     healthcheck:
       test: ["CMD", "kafka-topics.sh", "--bootstrap-server", "localhost:9092", "--list"]
-      interval: 10s
-      timeout: 5s
-      retries: 2
+      interval: 30s
+      timeout: 10s
+      retries: 3
       start_period: 120s
 
   kafka-ui:
@@ -278,6 +278,32 @@ services:
       - ../GmailIngestionWorker:/app:rw
     command: python worker__write_messages_to_db.py gmail-domain-interest
 
+  worker_gmail_labeling:
+    build:
+      context: ../GmailIngestionWorker
+      dockerfile: Dockerfile
+      args:
+        DEV_MODE: ${DEV_MODE-false}
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+    container_name: worker_gmail_labeling
+    depends_on:
+      kafka:
+        condition: service_healthy
+    networks:
+      - appnet
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - DATABASE_URL=mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_PROJECT_ID=${GOOGLE_PROJECT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+    volumes:
+      - ../GmailIngestionWorker:/app:rw
+    command: python worker__gmail_labeling.py
+
   worker__company_enrichment:
     build:
       context: ../GmailIngestionWorker
@@ -285,7 +311,7 @@ services:
       args:
         DEV_MODE: ${DEV_MODE-false}
         GITHUB_TOKEN: ${GITHUB_TOKEN}
-    container_name: worker__company_enrichment
+    container_name: worker_company_enrichment
     working_dir: /app  #probably
     depends_on:
       - mysql
@@ -294,8 +320,11 @@ services:
     environment:
       - DATABASE_URL=mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker
       - GITHUB_TOKEN=${GITHUB_TOKEN}
-      - SCHEDULED_WORKER_MODULE=company_enrichment.batch
+      - SCHEDULED_WORKER_MODULE=module__company_enrich
       - SCHEDULED_WORKER_INTERVAL=3600 #hourly
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_PROJECT_ID=${GOOGLE_PROJECT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
     volumes:
       - ../GmailIngestionWorker:/app:rw
     command: python worker__scheduled_interval_wrapper.py 

@@ -1,37 +1,51 @@
 application_detection:
   subject_keywords:
-    - applied
-    - application received
-    - thank you for applying
-    - submitted your resume
-    - we appreciate your interest
-    - regarding your application
-    - update on your application
-    - your application for * at
-    - update on your candidacy
-    - Thanks for applying
-    - Thank you for your application
-    - application status
-    - Important information about your application
-    - Thanks for applying
-
-
+    - 'applied'
+    - 'application received'
+    - 'thank you for applying'
+    - 'submitted your resume'
+    - 'we appreciate your interest'
+    - 'regarding your application'
+    - 'update on your application'
+    - 'your application for * at'
+    - 'update on your candidacy'
+    - 'Thank you for applying'
+    - 'Thank you for your application'
+    - 'application status'
+    - 'Important information about your application'
+    - 'Thanx You for Your Interest in [\w\s,]*'
+    - '[\w\s,]* Interview Request'
+    - 'Intro call with [\w\s,]*'
+    - 'Position Filled'
+    - '[\w\s]*, we''re confirming your [\w\s'']* interview with [\w\s,]*!?'
+    - 'your application was sent to'
+    - 'Invitation [\w\s,]* Interview'
+    - 'Thank you for your interest in [\w\s,]*'
 
   body_phrases:
-    - we’ve received your application
-    - your application is under review
-    - we’re excited to consider you
-    - next steps in the hiring process
-    - your interview is scheduled
-    - decided to move forward with other candidates
-    - who more closely match our needs at this time
-    - other applicants whose skills and background more closely
-    - moving forward with your application
-    - thank you for considering a career opportunity
-    - Unfortunately, we won't be moving forward at this time
-    - Thank you for taking the time to apply
-    - We really appreciate you taking the time to apply
-    - We will keep your resume on file
+    - 'we’ve received your application'
+    - 'your application is under review'
+    - 'we’re excited to consider you'
+    - 'next steps in the hiring process'
+    - 'your interview is scheduled'
+    - 'decided to move forward with other candidates'
+    - 'who more closely match our needs at this time'
+    - 'other applicants whose skills and background more closely'
+    - 'moving forward with your application'
+    - 'thank you for considering a career opportunity'
+    - 'Unfortunately, we won''t be moving forward at this time'
+    - 'Thank you for taking the time to apply'
+    - 'We really appreciate you taking the time to apply'
+    - 'We will keep your resume on file'
+    - 'Thank you for your application'
+    - 'Thank you for applying to our open'
+    - 'Thank you for applying for the'
+    - 'Thank you for your interest in the'
+    - 'Follow-Up on Your Recent Interview'
+    - 'Thank you so much for taking the time to apply'
+    - 'An update about your application'
+    - 'Thank you for expressing interest in our [\w\s,]* role[!\.]+'
+
 
   sender_patterns:
     - 'no-reply@*.jobs'
@@ -43,20 +57,35 @@ application_detection:
     - 'notifications@app.bamboohr.com'
     - 'no-reply@ats.rippling.com'
     - '*@myworkday.com'
+    - 'noreply@candidates.workablemail.com'
 
   sender_exclude_patterns:
     - 'chris.thomas@cleaner.codes'
 
   exclude_if_subject_contains:
-    - advertisement
-    - newsletter
-    - survey
-    - you’re getting paid today
-    - Update on your Gusto benefits
-    - You can now set beneficiaries
-    - You just received
-    - Request time off with Gusto
-    - Please review your Affordable Care Act
-    - Please review your Summary of Health Plan
+    - 'advertisement'
+    - 'newsletter'
+    - 'survey'
+    - 'you’re getting paid today'
+    - 'Update on your Gusto benefits'
+    - 'You can now set beneficiaries'
+    - 'You just received'
+    - 'Request time off with Gusto'
+    - 'Please review your Affordable Care Act'
+    - 'Please review your Summary of Health Plan'
     - 'Security Alert:'
-    - Reset password
+    - 'Reset password'
+    - 'please add me to your LinkedIn network$'
+    - 'start a conversation with your new connection$'
+    - 'I just requested to connect$'
+    - 'I (?:still )? want to connect$'
+    - 'I''d like to connect 👤$'
+    - 'I''ve sent you a connection request$'
+    - '(?:[\w]*) just messaged you$'
+    - '^Message replied: '
+    - '^Messages from (:[\w\s\d,]*) are waiting$'
+    - 'Password setup'
+    - '^Reset your password for your candidate account$'
+    - '^View my connection request$'
+    - '^You have an invitation(?: ✉️)?$'
+    - '^You have \d+ new messages?$'

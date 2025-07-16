@@ -63,7 +63,7 @@ def main():
                 print(f"📨 recieved on: {date_value}")
                 item = {
                     "message": email,
-                    "user_id": fetcher._user.id,
+                    "user_id": fetcher.user_id,
                     "date_recieved": message_datetime.isoformat()
                 }
                 producer.send(item)

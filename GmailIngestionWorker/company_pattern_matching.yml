@@ -8,3 +8,38 @@ email_patterns:
   - ^([\w\s]*?)(?:Workday)? <\w+@myworkday.com>$
   - ^WorkdayDoNotReply ([\w\s]*?) <\w+@myworkday.com>$
   - \"Workday\s?@\s?(\w*?)\" <\w+@myworkday.com>
+
+subject_patterns:
+  - ^Thank you for applying (?:to|at|with) (?:a position at )?([\w\s,]*)!?$
+  - ^([\w\s]*) Application Received$
+  - ^([\w\s]*) \| Thank you for applying$
+  - ^Your [A|a]pplication with ([\w\s,]*)$
+  - thank you for applying (?:to|at|with) (?:a position at )?([\w\s,]*)$
+  - ^([\w\s,]*) Application Status$
+  - ^Thank you for your application to (?:a position at )?([\w\s,]*)!?$
+  - ^([\w\s,]*) - thank you for applying!?$
+  - ^([\w\s,]*) \| Thank you for your application$
+  - ^Update on your recent job application (?:to|at|with) ([\w\s,]*)\.?$
+  - ^Your Job Application (?:to|at|with) ([\w\s,]*)$
+  - thanks for your interest in ([\w\s,]*)!$
+  - ^Thank you for your interest in (?:a position at )?([\w\s,]*)[\.!]?$
+  - ^Application Update from ([\w\s,]*) -
+  - ^Update on your Application (?:to|at|with) ([\w\s,]*)$
+  - ^Update on your candidacy from ([\w\s,]*)$
+  - ^Update on your application (?:to|at|with) ([\w\s,]*)$
+  - ^Thank you from ([\w\s,]*)$
+
+body_patterns:
+  - ^Thank you for applying to (?:a position at )?([\w\s,]*)\.$
+  - ^Thank you for your application to (?:a position at )?([\w\s,]*)\.$
+  - ^Thank you for your interest in (?:a position at )?([\w\s,]*)\.$
+  - ^Thank you for your interest in (?:a position at )?([\w\s,]*), we will be in touch soon\.$
+  - ^We have received your application for the (?:[\w\s,]*) position at ([\w\s,]*)\.$
+  - ^We have received your application for the (?:[\w\s,]*) position at ([\w\s,]*), and we will be in touch soon\.$
+  - ^([\w\s,]*) Talent Acquisition(?:\sTeam)?$
+  - ^Thank you for your application to (?:a position at )?([\w\s,]*), we will be in touch soon\.$
+
+
+
+
+

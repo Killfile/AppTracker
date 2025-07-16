@@ -7,6 +7,7 @@ from kafka.errors import TopicAlreadyExistsError
 from kafka import KafkaConsumer
 import time
 from kafka.errors import NoBrokersAvailable
+from gmail_gateway_factory import GmailGatewayFactory
 from retry_decorater import retry
 from gmail_message_adapter import GmailMessageAdapter
 from kafka_constants import KAFKA_BOOTSTRAP_SERVERS
@@ -26,6 +27,7 @@ import time
 DOMAIN_MAPPING_TOPIC = "user-domain-mapping"
 KEYWORD_MISS_DELAYED_TOPIC = 'gmail-keyword-miss-delayed'
 DOMAIN_INTEREST_TOPIC = "gmail-domain-interest"
+LABEL_TOPIC = "gmail-label-requests"
 
 class DomainInterestCache:
     def __init__(self, topic, refresh_interval=60):
@@ -81,26 +83,27 @@ class DomainInterestCache:
 
 
 class DomainInterestWorker:
-    def __init__ (self, cache: DomainInterestCache, keyword_miss_consumer: KafkaConsumer, domain_interest_producer: kafka_factory.TimestampingKafkaProducer):
+    def __init__ (self, cache: DomainInterestCache, keyword_miss_consumer: KafkaConsumer, domain_interest_producer: kafka_factory.TimestampingKafkaProducer, gmail_label_producer: kafka_factory.TimestampingKafkaProducer):
         self._keyword_miss_consumer = keyword_miss_consumer
         self._domain_interest_producer = domain_interest_producer
+        self._gmail_label_producer = gmail_label_producer
         self._cache = cache
         self._gateway = {}
 
+    def label_message(self, gateway, user_id, label_name, message_id):
+        label_id = gateway.create_or_get_label(label_name=label_name)
+        message = {
+            "user_id": user_id,
+            "label_id": label_id,
+            "message_id": message_id}
+        self._gmail_label_producer.send(message)
+
     def _get_gateway(self, user_id: str):
-        gateway = self._gateway.get(user_id)
-        if not gateway:
-            with SessionLocal() as db:
-                userDAO = UserDAO(db)
-                user = userDAO.get_user_by_id(user_id)
-            if not user:
-                raise ValueError(f"User with ID {user_id} not found.")
-            gateway = GmailGateway(access_token=user.google_access_token, refresh_token=user.google_refresh_token, user_id=user.google_id)
-            self._gateway[user_id] = gateway
+        return GmailGatewayFactory.build(user_id)
         
-        return gateway
 
     def run(self):
+        keyword_classifier = KeywordClassifier()
         for msg in self._keyword_miss_consumer:
             value = msg.value
             email = GmailMessageAdapter(value["message"])
@@ -114,11 +117,13 @@ class DomainInterestWorker:
                 continue
 
             if self._cache.contains(key):
-                print(f"🔑 Message {email.gmail_message_id} from domain {email.from_address} flagged for followup for user: {user_id}",flush=True)
-                gateway = self._get_gateway(user_id)
-                label_id = gateway.create_or_get_label(label_name="AppTracker: Domain Flagged")
-                gateway.apply_label_to_message(message_id=email.gmail_message_id, label_id=label_id)
-                self._domain_interest_producer.send(value)
+                if keyword_classifier.is_blacklisted(subject=email.subject, body=email.body, sender=email.from_address):
+                    print(f"❌ Blacklisted email from {email.from_address} with subject '{email.subject}' for user: {user_id}", flush=True)
+                else:
+                    print(f"🔑 Message {email.gmail_message_id} from domain {email.from_address} flagged for followup for user: {user_id}",flush=True)
+                    gateway = self._get_gateway(user_id)
+                    self.label_message(gateway, user_id, "AppTracker: Domain Flagged", email.gmail_message_id)
+                    self._domain_interest_producer.send(value)
            
 
 if __name__ == "__main__":
@@ -129,7 +134,8 @@ if __name__ == "__main__":
 
     miss_consumer = kafka_factory.initialize_kafka_consumer(KEYWORD_MISS_DELAYED_TOPIC, name="domain-interest-miss-consumer")
     interest_producer = kafka_factory.initialize_kafka_producer(DOMAIN_INTEREST_TOPIC)
+    gmail_label_producer = kafka_factory.initialize_kafka_producer(LABEL_TOPIC)
 
-    worker = DomainInterestWorker(cache=cache, keyword_miss_consumer=miss_consumer, domain_interest_producer=interest_producer)
+    worker = DomainInterestWorker(cache=cache, keyword_miss_consumer=miss_consumer, domain_interest_producer=interest_producer, gmail_label_producer=gmail_label_producer)
     worker.run()
         
