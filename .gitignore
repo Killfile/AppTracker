@@ -209,3 +209,4 @@ marimo/_lsp/
 __marimo__/
 
 UserManagementAPI/google_oauth_secrets.json
+sql_scratchpad.sql
