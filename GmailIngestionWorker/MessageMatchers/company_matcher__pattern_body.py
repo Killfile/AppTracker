@@ -1,5 +1,5 @@
-from MessageEnrichments.abstract_message_enrichment_stage import AbstractMessageEnrichmentStage
-from MessageEnrichments.message_match import MessageMatch
+from MessageMatchers.abstract_message_matcher_stage import AbstractMessageMatcherStage
+from MessageMatchers.message_match import MessageMatch
 from apptracker_database.models import Message
 from apptracker_database.company_dao import CompanyDAO
 
@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session
 import re
 
 
-class CompanyEnrichment_PatternBody(AbstractMessageEnrichmentStage):
+class CompanyMatcher_PatternBody(AbstractMessageMatcherStage):
     def __init__(self, patterns="company_pattern_matching.yml"):
         config = self._load_yml_config(patterns)
         self._body_patterns = config["body_patterns"]

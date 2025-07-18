@@ -6,7 +6,7 @@ from abc import ABC, abstractmethod
 from pathlib import Path
 
 
-class AbstractMessageEnrichmentStage(ABC):
+class AbstractMessageMatcherStage(ABC):
     @abstractmethod
     def process(self, message: Message, db: Session) -> tuple[Message, bool]:
         raise NotImplementedError

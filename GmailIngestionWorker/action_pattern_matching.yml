@@ -1,0 +1,27 @@
+# Patterns for extracting action types from emails, grouped by ActionType
+interview_patterns:
+  - "(?i)interview( scheduled| invitation| request| with| for)?"
+  - "(?i)interview"
+call_patterns:
+  - "(?i)phone call"
+  - "(?i)call scheduled"
+  - "(?i)call with"
+  - "(?i)call for"
+follow_up_patterns:
+  - "(?i)follow[- ]?up"
+  - "(?i)follow up email"
+  - "(?i)follow up call"
+rejected_patterns:
+  - "(?i)rejected"
+  - "(?i)unfortunately"
+  - "(?i)not selected"
+  - "(?i)declined"
+  - "(?i)regret to inform"
+email_sent_patterns:
+  - "(?i)email sent"
+  - "(?i)sent you an email"
+  - "(?i)emailed you"
+other_patterns:
+  - "(?i)other"
+  - "(?i)miscellaneous"
+  - "(?i)general update"

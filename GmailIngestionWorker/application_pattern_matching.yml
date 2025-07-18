@@ -1,0 +1,13 @@
+# Patterns for extracting application/job titles from emails
+# Each pattern should match a single job title string
+application_patterns:
+  - "(?i)position[:\\s-]+([A-Za-z0-9 ,:.'\\-/]+)"
+  - "(?i)role[:\\s-]+([A-Za-z0-9 ,:.'\\-/]+)"
+  - "(?i)job[:\\s-]+([A-Za-z0-9 ,:.'\\-/]+)"
+  - "(?i)opening[:\\s-]+([A-Za-z0-9 ,:.'\\-/]+)"
+  - "(?i)opportunity[:\\s-]+([A-Za-z0-9 ,:.'\\-/]+)"
+  - "(?i)vacancy[:\\s-]+([A-Za-z0-9 ,:.'\\-/]+)"
+  - "(?i)title[:\\s-]+([A-Za-z0-9 ,:.'\\-/]+)"
+  - "(?i)hiring for ([A-Za-z0-9 ,:.'\\-/]+)"
+  - "(?i)as ([A-Za-z0-9 ,:.'\\-/]+) at"
+  - "(?i)applied for the ([A-Za-z0-9 ,:.'\\-/]+) position"

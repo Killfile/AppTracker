@@ -1,5 +1,5 @@
-from MessageEnrichments.abstract_message_enrichment_stage import AbstractMessageEnrichmentStage
-from MessageEnrichments.message_match import MessageMatch
+from MessageMatchers.abstract_message_matcher_stage import AbstractMessageMatcherStage
+from MessageMatchers.message_match import MessageMatch
 from apptracker_database.models import Message
 from apptracker_database.email_company_link_dao import EmailCompanyLinkDAO
 
@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 import re
 
 
-class CompanyEnrichment_KnownEmailAddress(AbstractMessageEnrichmentStage):
+class CompanyMatcher_KnownEmailAddress(AbstractMessageMatcherStage):
     def __init__(self, patterns="company_pattern_matching.yml"):
         config = self._load_yml_config(patterns)
         self._blacklisted_email_patterns = config["email_blacklist"]

@@ -321,7 +321,32 @@ services:
       - DATABASE_URL=mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker
       - GITHUB_TOKEN=${GITHUB_TOKEN}
       - SCHEDULED_WORKER_MODULE=module__company_enrich
-      - SCHEDULED_WORKER_INTERVAL=3600 #hourly
+      - SCHEDULED_WORKER_INTERVAL=60 #minutely
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_PROJECT_ID=${GOOGLE_PROJECT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+    volumes:
+      - ../GmailIngestionWorker:/app:rw
+    command: python worker__scheduled_interval_wrapper.py 
+
+  worker__application_enrichment:
+    build:
+      context: ../GmailIngestionWorker
+      dockerfile: Dockerfile
+      args:
+        DEV_MODE: ${DEV_MODE-false}
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+    container_name: worker_application_enrichment
+    working_dir: /app  #probably
+    depends_on:
+      - mysql
+    networks:
+      - appnet
+    environment:
+      - DATABASE_URL=mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - SCHEDULED_WORKER_MODULE=module__application_enrich
+      - SCHEDULED_WORKER_INTERVAL=60 #minutely
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_PROJECT_ID=${GOOGLE_PROJECT_ID}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
