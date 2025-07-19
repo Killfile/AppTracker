@@ -52,9 +52,12 @@ def main():
                 adapter = GmailMessageAdapter(email)
                 date_value = get_header_value(email["payload"]["headers"], "Date")
                 message_datetime = parsedate_to_datetime(date_value) if date_value else None
+                
                 if message_datetime is None:
                     print(f"Skipping message {email['id']} due to missing or invalid date header.")
                     continue    
+                if message_datetime.tzinfo is None:
+                    message_datetime = message_datetime.replace(tzinfo=datetime.timezone.utc)
                 if message_datetime < datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=365):
                     fetcher.page_token = GmailMessageHistoryFetcher.CRAWL_COMPLETE
                     print(f"Halting fetcher for user {fetcher._user.username} due to message date {message_datetime} being older than 1 year.")
