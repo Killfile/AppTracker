@@ -12,9 +12,10 @@ class ApplicationMatcher_PatternBody(AbstractMessageMatcherStage):
 
     def extract_application(self, text: str) -> Optional[Tuple[str, str]]:
         for pattern in self.patterns:
+
             match = re.search(pattern, text)
             if match:
-                print(f" Found match: {match.group(1).strip()} with pattern: {pattern}", flush=True)
+                print(f"📌🔗Found match: {match.group(1).strip()} with pattern: {pattern}", flush=True)
                 return match.group(1).strip(), pattern
         return None
 

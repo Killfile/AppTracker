@@ -1,13 +1,14 @@
 # Patterns for extracting application/job titles from emails
 # Each pattern should match a single job title string
 application_patterns:
-- 'Thank you for applying (?:to|for)+ the ([\w\s,]*\(\)) (?:position|role|job|opening|opportunity|vacancy|title)+'
-- 'your application (?:to|for)+ the ([\w\s,]*\(\))(?: position| role| job| opening| opportunity| vacancy| title)? at'
-- 'your interest in the ([\w\s,]*\(\))(?: position| role| job| opening| opportunity| vacancy| title)? at'
-- 'apply for the ([\w\s,]*\(\))(?: position| role| job| opening| opportunity| vacancy| title)+\. '
-- 'we have filled the ([\w\s,]*\(\))(?: position| role| job| opening| opportunity| vacancy| title)+'
-- 'consider you for ([\w\s,]*\(\))\.'
-- 'for our ([\w\s,]*\(\))(?: position| role| job| opening| opportunity| vacancy| title)+\.'
-- 'apply and engage with us about the ([\w\s,]*\(\))(?: position| role| job| opening| opportunity| vacancy| title)+\.'
+- 'Thank you for applying (?:to|for)+ the ([\w\s,\u00A0\(\)]*)(?:position|role|job|opening|opportunity|vacancy|title)+'
+- 'your application (?:to|for)+ the ([\w\s,\u00A0\(\)]*)(?:position|role|job|opening|opportunity|vacancy|title)? at'
+- 'your interest in the ([\w\s,\u00A0\(\)]*)(?:position|role|job|opening|opportunity|vacancy|title)? at'
+- 'apply for the ([\w\s,\u00A0\(\)]*)(?:position|role|job|opening|opportunity|vacancy|title)+\.'
+- 'we have filled the ([\w\s,\u00A0\(\)]*)(?:position|role|job|opening|opportunity|vacancy|title)+'
+- 'consider you for ([\w\s,\u00A0\(\)]*)\.'
+- 'for our ([\w\s,\u00A0\(\)]*)(?:position|role|job|opening|opportunity|vacancy|title)+\.'
+- 'apply and engage with us about the ([\w\s,\u00A0\(\)]*)(?:position|role|job|opening|opportunity|vacancy|title)+\.'
+- 'overwhelming response to the ([\w\s,\u00A0\(\)]*)(?:position|role|job|opening|opportunity|vacancy|title)+'
 
 
