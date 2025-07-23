@@ -1,0 +1,60 @@
+
+
+sub_components:
+  spaces: '\s\u00A0'
+  position: 'position|role|job|opening|opportunity|vacancy|title'
+  application: 'application|candidacy'
+  case_insensitive: '(?i)'
+  parentheses: '\(\)'
+  brackets: '\[\]'
+  preposition: 'to|for|at|with|from'
+
+components:
+  company_name: '[\w{{spaces}},{{parentheses}}]*'
+  job_title: '[\d\w{{spaces}},{{parentheses}}{{brackets}}]*'
+  email_company_name: '[\w\s]*'
+  position_group: '(?:{{position}})'
+  preposition_group: '(?:{{preposition}})'
+  application_group: '(?:{{application}})'
+
+patterns:
+  email_blacklist:
+    - '{{case_insensitive}}^no-reply@(\w{2}\.)?greenhouse\.io$'
+    - '{{case_insensitive}}^send\.applicantemails\.com$'
+  email_patterns:
+    - '{{case_insensitive}}^([\w\s]*) <no-reply@hire.lever.co>$'
+    - '{{case_insensitive}}^([\w\s]*) Hiring Team <no-reply@ashbyhq.com>$'
+    - '{{case_insensitive}}^([\w\s]*) Recruitment <no-reply@ashbyhq.com>$'
+    - '{{case_insensitive}}^([\w\s]*?)(?:Workday)? <\w+@myworkday.com>$'
+    - '{{case_insensitive}}^WorkdayDoNotReply ([\w\s]*?) <\w+@myworkday.com>$'
+    - '"Workday\s?@\s?(\w*?)" <\w+@myworkday.com>'
+
+  subject_patterns:
+    - '{{case_insensitive}}^thank you for applying {{preposition_group}}+\s?(?:a position at )?({{company_name}})!?$'
+    - '{{case_insensitive}}^({{company_name}}) Application Received$'
+    - '{{case_insensitive}}^({{company_name}}) \| Thank you for applying$'
+    - '{{case_insensitive}}^Your application with ({{company_name}})$'
+    - '{{case_insensitive}}^thank you for applying {{preposition_group}} (?:a position at )?({{company_name}})$'
+    - '{{case_insensitive}}^({{company_name}}) Application Status$'
+    - '{{case_insensitive}}^Thank you for your application to (?:a position at )?({{company_name}})$'
+    - '{{case_insensitive}}^({{company_name}}) - thank you for applying$'
+    - '{{case_insensitive}}^({{company_name}}) \| Thank you for your application$'
+    - '{{case_insensitive}}^Update on your recent job application {{preposition_group}} ({{company_name}})$'
+    - '{{case_insensitive}}^Your Job Application {{preposition_group}} ({{company_name}})$'
+    - '{{case_insensitive}}^thanks for your interest in ({{company_name}})!$'
+    - '{{case_insensitive}}^Thank you for your interest in (?:a position at )?({{company_name}})[\.!]?$'
+    - '{{case_insensitive}}^Application Update from ({{company_name}})$'
+    - '{{case_insensitive}}^Update on your {{application_group}} {{preposition_group}} ({{company_name}})$'
+    - '{{case_insensitive}}^Thank you from ({{company_name}})$'
+
+  body_patterns:
+    - '{{case_insensitive}}^Thank you for applying to (?:a position at )?({{company_name}})\.$'
+    - '{{case_insensitive}}^Thank you for your application to (?:a position at )?({{company_name}})\.$'
+    - '{{case_insensitive}}^Thank you for your interest in (?:a position at )?({{company_name}})\.$'
+    - '{{case_insensitive}}^Thank you for your interest in (?:a position at )?({{company_name}}), we will be in touch soon$'
+    - '{{case_insensitive}}^We have received your application for the (?:[\w\s,]*) position at ({{company_name}})\.$'
+    - '{{case_insensitive}}^We have received your application for the (?:[\w\s,]*) position at ({{company_name}}), and we will be in touch soon$'
+    - '{{case_insensitive}}^({{company_name}}) Talent Acquisition(?:\sTeam)?$'
+    - '{{case_insensitive}}^Thank you for your application to (?:a position at )?({{company_name}}), we will be in touch soon$'
+
+    
