@@ -60,7 +60,7 @@ def main():
                     message_datetime = message_datetime.replace(tzinfo=datetime.timezone.utc)
                 if message_datetime < datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=365):
                     fetcher.page_token = GmailMessageHistoryFetcher.CRAWL_COMPLETE
-                    print(f"Halting fetcher for user {fetcher._user.username} due to message date {message_datetime} being older than 1 year.")
+                    print(f"Halting fetcher for user {fetcher.user_id} due to message date {message_datetime} being older than 1 year.")
                     continue
                 
                 print(f"📨 recieved on: {date_value}")

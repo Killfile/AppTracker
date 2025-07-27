@@ -1,5 +1,6 @@
 from MessageMatchers.abstract_message_matcher_stage import AbstractMessageMatcherStage
 from MessageMatchers.message_match import MessageMatch
+from RegExCompiler.regex_compiler import RegexCompiler
 from apptracker_database.models import Message
 from apptracker_database.company_dao import CompanyDAO
 
@@ -11,8 +12,8 @@ import re
 
 class CompanyMatcher_PatternBody(AbstractMessageMatcherStage):
     def __init__(self, patterns="company_pattern_matching.yml"):
-        config = self._load_yml_config(patterns)
-        self._body_patterns = config["body_patterns"]
+        self.regex_compiler = RegexCompiler(patterns)
+        self._body_patterns = self.regex_compiler.get_patterns().get("body_patterns", [])
 
     def process(self, message: Message, db: Session) -> tuple[MessageMatch, bool]:
         for pattern in self._body_patterns:

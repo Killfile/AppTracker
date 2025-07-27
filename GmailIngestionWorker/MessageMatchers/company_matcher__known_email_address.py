@@ -1,5 +1,6 @@
 from MessageMatchers.abstract_message_matcher_stage import AbstractMessageMatcherStage
 from MessageMatchers.message_match import MessageMatch
+from RegExCompiler.regex_compiler import RegexCompiler
 from apptracker_database.models import Message
 from apptracker_database.email_company_link_dao import EmailCompanyLinkDAO
 
@@ -12,8 +13,8 @@ import re
 
 class CompanyMatcher_KnownEmailAddress(AbstractMessageMatcherStage):
     def __init__(self, patterns="company_pattern_matching.yml"):
-        config = self._load_yml_config(patterns)
-        self._blacklisted_email_patterns = config["email_blacklist"]
+        self.regex_compiler = RegexCompiler(patterns)
+        self._blacklisted_email_patterns = self.regex_compiler.get_patterns().get("blacklisted_email", [])
 
     def _is_blacklisted(self, email_address)->bool:
         for value in self._blacklisted_email_patterns:

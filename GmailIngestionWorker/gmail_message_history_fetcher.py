@@ -1,5 +1,4 @@
 from apptracker_database.models import User
-from apptracker_shared.gmail.gmail_gateway import GmailGateway
 
 from gmail_gateway_factory import GmailGatewayFactory 
 

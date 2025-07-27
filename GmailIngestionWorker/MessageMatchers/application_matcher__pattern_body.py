@@ -3,12 +3,13 @@ import yaml
 from typing import Optional, Tuple
 from MessageMatchers.abstract_message_matcher_stage import AbstractMessageMatcherStage
 from MessageMatchers.message_match import MessageMatch
+from RegExCompiler.regex_compiler import RegexCompiler
 from apptracker_database.models import Message
 
 class ApplicationMatcher_PatternBody(AbstractMessageMatcherStage):
     def __init__(self, pattern_file: str = "application_pattern_matching.yml"):
-        with open(pattern_file, 'r', encoding='utf-8') as f:
-            self.patterns = yaml.safe_load(f)['application_patterns']
+        self.regex_compiler = RegexCompiler(pattern_file)
+        self.patterns = self.regex_compiler.get_patterns().get("application_patterns", [])
 
     def extract_application(self, text: str) -> Optional[Tuple[str, str]]:
         for pattern in self.patterns:
