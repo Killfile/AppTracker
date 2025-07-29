@@ -1,3 +1,4 @@
+from kafka import KafkaConsumer
 from kafka.admin import KafkaAdminClient, NewTopic
 from kafka.errors import TopicAlreadyExistsError
 import time
@@ -72,6 +73,63 @@ gmail_label_producer = kafka_factory.initialize_kafka_producer(LABEL_TOPIC)
 
 consumer = kafka_factory.initialize_kafka_consumer(CONSUMER_TOPIC, name="keyword-classifier-worker")
 
+class KeywordClassifierWorker:
+    def __init__(self, consumer: KafkaConsumer, domain_mapping_producer: kafka_factory.TimestampingKafkaProducer, keyword_match_producer: kafka_factory.TimestampingKafkaProducer, keyword_miss_producer: kafka_factory.TimestampingKafkaProducer, dlq_producer: kafka_factory.TimestampingKafkaProducer, gmail_label_producer: kafka_factory.TimestampingKafkaProducer):
+        self.classifier = KeywordClassifier()
+        self.consumer = consumer
+        self.domain_mapping_producer = domain_mapping_producer
+        self.keyword_match_producer = keyword_match_producer
+        self.keyword_miss_producer = keyword_miss_producer
+        self.gmail_label_producer = gmail_label_producer
+        self.dlq_producer = dlq_producer
+    
+    def label_message(self, gateway, user_id, label_name, message_id):
+        label_id = gateway.create_or_get_label(label_name=label_name)
+        message = {
+            "user_id": user_id,
+            "label_id": label_id,
+            "message_id": message_id}
+        self.gmail_label_producer.send(message)
+
+    def run(self):
+        for message in self.consumer:
+            inner = message.value
+
+            adapter = GmailMessageAdapter(inner["message"])
+
+            sender = adapter.from_address
+            subject = adapter.subject
+            body = adapter.body
+            
+            user_id = inner["user_id"]
+            gateway = GmailGatewayFactory.build(user_id)
+
+            classification = self.classifier.is_application_related(subject, body, sender)
+
+            if classification == KeywordClassifications.HIT:
+                self.label_message(gateway, user_id, "AppTracker: Application Related", adapter.gmail_message_id)
+                self.keyword_match_producer.send(inner)
+                print(f'🔑✅: {adapter.gmail_message_id}; current time is {time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}', flush=True)
+                
+                domain = adapter.domain
+                if domain:
+                    key = f"{user_id}:{domain}"
+                    value = {
+                        "user_id": user_id,
+                        "domain": domain,
+                        "gmail_message_id": adapter.gmail_message_id,
+                        "timestamp": time.time()
+                    }
+                    self.domain_mapping_producer.send(key=key, value=value)
+            elif classification == KeywordClassifications.EXCLUDE:
+                self.dlq_producer.send(inner)
+                print(f'🔑☠️: {adapter.gmail_message_id}; current time is {time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}', flush=True)
+            elif classification == KeywordClassifications.MISS:
+                self.keyword_miss_producer.send(inner)
+                print(f'🔑❌: {adapter.gmail_message_id}; current time is {time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}', flush=True)
+            else:
+                raise ValueError(f"Encountered a keyword classification of {classification} which should not be possible.")
+
 def label_message(gateway, user_id, label_name, message_id):
     label_id = gateway.create_or_get_label(label_name=label_name)
     message = {
@@ -83,47 +141,17 @@ def label_message(gateway, user_id, label_name, message_id):
 
 def main():
     print('EmailAnalysisWorker started. Waiting for messages...')
-    classifier = KeywordClassifier()
-    for message in consumer:
-        inner = message.value
+    worker = KeywordClassifierWorker(
+        consumer=consumer,
+        domain_mapping_producer=domain_mapping_producer,
+        keyword_match_producer=keyword_match_producer,
+        keyword_miss_producer=keyword_miss_producer,
+        dlq_producer=dlq_producer,
+        gmail_label_producer=gmail_label_producer
+    )
 
-
-        adapter = GmailMessageAdapter(inner["message"])
-
-        sender = adapter.from_address
-        subject = adapter.subject
-        body = adapter.body
-        
-        user_id = inner["user_id"]
-        gateway = GmailGatewayFactory.build(user_id)
-
-        classification = classifier.is_application_related(subject, body, sender)
-
-        if classification == KeywordClassifications.HIT:
-            label_message(gateway, user_id, "AppTracker: Application Related", adapter.gmail_message_id)
-            keyword_match_producer.send(inner)
-            print(f'🔑✅: {adapter.gmail_message_id}; current time is {time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}', flush=True)
-            
-            domain = adapter.domain
-            if domain:
-                key = f"{user_id}:{domain}"
-                value = {
-                    "user_id": user_id,
-                    "domain": domain,
-                    "gmail_message_id": adapter.gmail_message_id,
-                    "timestamp": time.time()
-                }
-                domain_mapping_producer.send(key=key, value=value)
-        elif classification == KeywordClassifications.EXCLUDE:
-            dlq_producer.send(inner)
-            print(f'🔑☠️: {adapter.gmail_message_id}; current time is {time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}', flush=True)
-        elif classification == KeywordClassifications.MISS:
-            keyword_miss_producer.send(inner)
-            print(f'🔑❌: {adapter.gmail_message_id}; current time is {time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}', flush=True)
-        else:
-            raise ValueError(f"Encountered a keyword classification of {classification} which should not be possible.")
-
-        
+    worker.run()
+    print('EmailAnalysisWorker finished processing messages.')
 
 if __name__ == '__main__':
     main()

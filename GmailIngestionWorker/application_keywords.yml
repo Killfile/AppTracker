@@ -122,4 +122,4 @@ patterns:
     - '^You have \d+ new messages?$'
     - '^Your latest Oracle jobs'
     - '{{case_insensitive}}Password Reset'
-    - '{{case_insensitive}}Price alert:''
+    - '{{case_insensitive}}Price alert:'
