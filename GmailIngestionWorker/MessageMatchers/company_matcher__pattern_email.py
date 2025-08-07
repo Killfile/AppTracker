@@ -13,12 +13,12 @@ import re
 class CompanyMatcher_PatternEmail(AbstractMessageMatcherStage):
     def __init__(self, patterns="company_pattern_matching.yml"):
         self.regex_compiler = RegexCompiler(patterns)
-        self._email_patterns = self.regex_compiler.get_patterns().get("email_patterns", [])
+        self._email_patterns = self.regex_compiler.get_patterns().get("email_patterns", {})
 
     def process(self, message: Message, db: Session) -> tuple[MessageMatch, bool]:
         matches = {}
         company_matches = []
-        for pattern in self._email_patterns:
+        for pattern in self._email_patterns.values():
             match = re.match(pattern, message.email_address.email)
             try:
                 if match and match.group(1):

@@ -20,8 +20,14 @@ class TestApplicationMatcher_PatternBody:
         mock_file.read.return_value = ""  # content doesn't matter, as safe_load is mocked
 
 
+        fake_config = {
+            "sub_components": {},
+            "components": {},
+            "patterns": {},
+            "application_patterns": patterns
+        }
         with patch("builtins.open", return_value=mock_file), \
-            patch("yaml.safe_load", return_value={"application_patterns": patterns}):
+            patch("yaml.safe_load", return_value=fake_config):
             matcher = ApplicationMatcher_PatternBody()
         matcher.patterns = patterns
         return matcher

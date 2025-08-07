@@ -11,7 +11,7 @@ import helper_functions as kafka_factory
 
 from keyword_classifier import KeywordClassifier, KeywordClassifications
 
-CONSUMER_TOPIC = 'gmail-messages'
+CONSUMER_TOPIC = 'general-ingestion'
 KEYWORD_MATCH_TOPIC = 'gmail-keyword-match'
 KEYWORD_MISS_TOPIC = 'gmail-keyword-miss'
 DOMAIN_MAPPING_TOPIC = "user-domain-mapping"
@@ -107,7 +107,7 @@ class KeywordClassifierWorker:
             classification = self.classifier.is_application_related(subject, body, sender)
 
             if classification == KeywordClassifications.HIT:
-                self.label_message(gateway, user_id, "AppTracker: Application Related", adapter.gmail_message_id)
+                self.label_message(gateway, user_id, "AppTracker/Related", adapter.gmail_message_id)
                 self.keyword_match_producer.send(inner)
                 print(f'🔑✅: {adapter.gmail_message_id}; current time is {time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}', flush=True)
                 

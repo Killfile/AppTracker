@@ -12,12 +12,35 @@ components:
   phrase: '{{word}}{{space}}{{word}}'
 patterns:
   test_group:
+    phrase: 
+      key: 'phrase'
+      value: '^{{phrase}}$'
+
+'''
+
+
+SIMPLE_YAML = '''
+sub_components:
+  word: '\\w+'
+  space: '\\s+'
+components:
+  phrase: '{{word}}{{space}}{{word}}'
+patterns:
+  test_group:
     - '^{{phrase}}$'
+
 '''
 
 @pytest.fixture
 def mock_yaml_file():
     m = mock_open(read_data=SAMPLE_YAML)
+    with patch('builtins.open', m):
+        yield
+
+
+@pytest.fixture
+def mock_simple_yaml():
+    m = mock_open(read_data=SIMPLE_YAML)
     with patch('builtins.open', m):
         yield
 
@@ -30,7 +53,7 @@ def test_successful_compilation(valid_config_path, mock_yaml_file):
     compiler = RegexCompiler(valid_config_path)
     patterns = compiler.get_patterns()
     assert 'test_group' in patterns
-    assert patterns['test_group'][0] == r'^\w+\s+\w+$'
+    assert patterns['test_group']['phrase'] == r'^\w+\s+\w+$'
 
 
 def test_missing_key_raises(valid_config_path, mock_yaml_file):
@@ -65,15 +88,16 @@ patterns:
         assert 'Undefined anchor' in str(exc.value)
 
 
-def test_get_patterns_caching(valid_config_path, mock_yaml_file):
+def test_get_patterns_caching(valid_config_path, mock_simple_yaml):
     compiler = RegexCompiler(valid_config_path)
     patterns1 = compiler.get_patterns()
     patterns2 = compiler.get_patterns()
     # Should be the same object (cached)
     assert patterns1 is patterns2
     # Changing the returned dict should affect subsequent calls
-    patterns1["test_group"].append("extra_pattern")
+    patterns1["test_group"]["key_1"] = "extra_pattern"
     patterns3 = compiler.get_patterns()
-    assert "extra_pattern" in patterns3["test_group"]
+    assert True == True
+    assert "extra_pattern" in patterns3["test_group"].values()
 
 

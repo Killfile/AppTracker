@@ -13,10 +13,10 @@ import re
 class CompanyMatcher_PatternBody(AbstractMessageMatcherStage):
     def __init__(self, patterns="company_pattern_matching.yml"):
         self.regex_compiler = RegexCompiler(patterns)
-        self._body_patterns = self.regex_compiler.get_patterns().get("body_patterns", [])
+        self._body_patterns = self.regex_compiler.get_patterns().get("body_patterns", {})
 
     def process(self, message: Message, db: Session) -> tuple[MessageMatch, bool]:
-        for pattern in self._body_patterns:
+        for pattern in self._body_patterns.values():
             match = re.search(pattern, str(message.message_body))
             if match and match.group(1):
                 company_name = match.group(1)

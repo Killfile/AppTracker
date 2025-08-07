@@ -1,0 +1,2776 @@
+{
+  "(?i)(?:thank you|thanks|thanx|thank you so much) for applying to (?:a position at|our [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position with)?([\\w\\s\\u00A0,\\(\\)]*)\\.": [
+    {
+      "message_id": 56030,
+      "match_string": "the Director of Engineering position here at Customer",
+      "match_id": 4048,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for applying to (?:a position at|our [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position with)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56191,
+      "match_string": "the Director of Software Engineering position at SERVPRO Headquarters",
+      "match_id": 4084,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for applying to (?:a position at|our [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position with)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56287,
+      "match_string": "work with us at Datavant",
+      "match_id": 4111,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for applying to (?:a position at|our [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position with)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56328,
+      "match_string": " Kajabi",
+      "match_id": 4136,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for applying to (?:a position at|our [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position with)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56250,
+      "match_string": "Coalition, Inc",
+      "match_id": 4158,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for applying to (?:a position at|our [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position with)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56268,
+      "match_string": "the Engineering Manager, Security role at Coinbase",
+      "match_id": 4164,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for applying to (?:a position at|our [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position with)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56805,
+      "match_string": "Spring Health",
+      "match_id": 4237,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for applying to (?:a position at|our [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position with)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57134,
+      "match_string": "the Engineering Manager position at vidIQ",
+      "match_id": 4265,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for applying to (?:a position at|our [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position with)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    }
+  ],
+  "(?i)(?:thank you|thanks|thanx|thank you so much) for your application to (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)\\.": [
+    {
+      "message_id": 57257,
+      "match_string": "Cribl and expressing interest in our Director, Software Engineering, Cribl Stream role",
+      "match_id": 4281,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your application to (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57387,
+      "match_string": "the  Director of Engineering position at \nMosaic",
+      "match_id": 4295,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your application to (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    }
+  ],
+  "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\.": [
+    {
+      "message_id": 56058,
+      "match_string": " HealthJoy",
+      "match_id": 4053,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56166,
+      "match_string": "HashiCorp",
+      "match_id": 4066,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56167,
+      "match_string": "joining the Emergent Software team",
+      "match_id": 4067,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56172,
+      "match_string": "the Senior Manager, Enterprise Systems Engineering (Employee Experience and Productivity) position",
+      "match_id": 4070,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56072,
+      "match_string": " Mark43",
+      "match_id": 4073,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56193,
+      "match_string": "the Chris position with our team",
+      "match_id": 4086,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56199,
+      "match_string": "HealthEquity",
+      "match_id": 4088,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56220,
+      "match_string": "DaySmart Software and the Engineering Manager, TeamUp position",
+      "match_id": 4099,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56228,
+      "match_string": "Adaptive Biotechnologies",
+      "match_id": 4102,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56284,
+      "match_string": "Consumer Cellular, Inc",
+      "match_id": 4109,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56296,
+      "match_string": "New Relic",
+      "match_id": 4117,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56314,
+      "match_string": "the Senior Director of Engineering position",
+      "match_id": 4129,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56324,
+      "match_string": "Recharge",
+      "match_id": 4135,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56247,
+      "match_string": " Lattice",
+      "match_id": 4156,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56352,
+      "match_string": "a career at Civix",
+      "match_id": 4172,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56402,
+      "match_string": " Serve Robotics",
+      "match_id": 4176,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56441,
+      "match_string": "ClickUp and the Director of Quality Engineering  position",
+      "match_id": 4185,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56456,
+      "match_string": "a career at MPOWERHealth",
+      "match_id": 4188,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56564,
+      "match_string": " Natera",
+      "match_id": 4197,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56565,
+      "match_string": "the role of Director of Engineering , reference 186482",
+      "match_id": 4198,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56568,
+      "match_string": "the Sr Development Manager role at Civix",
+      "match_id": 4199,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56597,
+      "match_string": "the Sr",
+      "match_id": 4207,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56598,
+      "match_string": "career opportunities with iHerb",
+      "match_id": 4208,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56641,
+      "match_string": "Crisis Text Line, Inc",
+      "match_id": 4216,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56717,
+      "match_string": "Collectly Inc",
+      "match_id": 4219,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56781,
+      "match_string": "the Senior Manager, Engineering role at Earnest",
+      "match_id": 4231,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56785,
+      "match_string": "a career at Catalis",
+      "match_id": 4232,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56901,
+      "match_string": "joining our company",
+      "match_id": 4243,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57058,
+      "match_string": "the Engineering Operations Director opening at Kentik",
+      "match_id": 4251,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57091,
+      "match_string": "EAB",
+      "match_id": 4247,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57098,
+      "match_string": "joining Upstart and applying to the Senior Engineering Manager, Financial Operations position",
+      "match_id": 4257,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57127,
+      "match_string": "joining our company",
+      "match_id": 4243,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57203,
+      "match_string": "the Wikimedia Foundation",
+      "match_id": 4270,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57251,
+      "match_string": "the Sr",
+      "match_id": 4207,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57277,
+      "match_string": "our company",
+      "match_id": 4288,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57287,
+      "match_string": "career opportunities at JCPenney",
+      "match_id": 4291,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57608,
+      "match_string": "the Director, Security Engineering, FedRAMP (Customer Identity) role at Okta",
+      "match_id": 4311,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56544,
+      "match_string": "being part of our team",
+      "match_id": 4323,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56657,
+      "match_string": " Crisis Text Line, Inc",
+      "match_id": 4327,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 56833,
+      "match_string": "a career at MedBridge Inc",
+      "match_id": 4332,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57003,
+      "match_string": " Brikmate",
+      "match_id": 4340,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57004,
+      "match_string": "Goody",
+      "match_id": 4341,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57307,
+      "match_string": "DELFI Diagnostics, Inc",
+      "match_id": 4347,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57310,
+      "match_string": "joining our team",
+      "match_id": 4349,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57354,
+      "match_string": "the Sr",
+      "match_id": 4207,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57485,
+      "match_string": "our Engineering Manager opening, and for taking the time to apply",
+      "match_id": 4358,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57498,
+      "match_string": "CoinTracker",
+      "match_id": 4360,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57510,
+      "match_string": "our Senior Engineering Manager (SEO Team) role with NerdWallet",
+      "match_id": 4361,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57169,
+      "match_string": " MoCaFi (Mobility Capital Finance, Inc)",
+      "match_id": 4371,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57189,
+      "match_string": " People Data Labs",
+      "match_id": 4373,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57621,
+      "match_string": " GradGuard",
+      "match_id": 4374,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    },
+    {
+      "message_id": 57625,
+      "match_string": "a Director of Engineering position at National Funding",
+      "match_id": 4375,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at|the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* position at|employment at|exploring career opportunities with us at)?([\\w\\s\\u00A0,\\(\\)]*)\\."
+    }
+  ],
+  "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in ([\\w\\s\\u00A0,\\(\\)]*) and for": [
+    {
+      "message_id": 56158,
+      "match_string": "Rula",
+      "match_id": 4051,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in ([\\w\\s\\u00A0,\\(\\)]*) and for"
+    },
+    {
+      "message_id": 56234,
+      "match_string": "Commvault",
+      "match_id": 4147,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in ([\\w\\s\\u00A0,\\(\\)]*) and for"
+    }
+  ],
+  "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in employment with ([\\w\\s\\u00A0,\\(\\)]*)": [
+    {
+      "message_id": 56294,
+      "match_string": "A Place for Mom and our",
+      "match_id": 4115,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in employment with ([\\w\\s\\u00A0,\\(\\)]*)"
+    },
+    {
+      "message_id": 56318,
+      "match_string": "Susan G",
+      "match_id": 4133,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)(?:thank you|thanks|thanx|thank you so much) for your interest in employment with ([\\w\\s\\u00A0,\\(\\)]*)"
+    }
+  ],
+  "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?": [
+    {
+      "message_id": 55967,
+      "match_string": " We encourage you to keep your profile and resume updated in our system so our Global",
+      "match_id": 4041,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56003,
+      "match_string": "\r\n \r\nSincerely,\r\n\r\nGreenway Health",
+      "match_id": 4043,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56173,
+      "match_string": "ve reviewed your credentials and would like to start by scheduling some time to speak with",
+      "match_id": 4071,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56174,
+      "match_string": "LPL Financial",
+      "match_id": 4072,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56074,
+      "match_string": "\r\n",
+      "match_id": 4074,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56181,
+      "match_string": "Omnicell",
+      "match_id": 4078,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56192,
+      "match_string": " Associate,",
+      "match_id": 4085,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56195,
+      "match_string": "Paylocity",
+      "match_id": 4087,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56289,
+      "match_string": "Paylocity",
+      "match_id": 4087,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56320,
+      "match_string": "Best,The RealReal",
+      "match_id": 4134,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56263,
+      "match_string": "The",
+      "match_id": 4162,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56267,
+      "match_string": "\r\nBest,\r\n\r\nAdvantive",
+      "match_id": 4163,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56272,
+      "match_string": "GoTu",
+      "match_id": 4166,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56434,
+      "match_string": "A member of our",
+      "match_id": 4182,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56451,
+      "match_string": " Hers",
+      "match_id": 4187,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56459,
+      "match_string": " \r\n\r\n\tThe IBM",
+      "match_id": 4189,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56481,
+      "match_string": "\r\n\r\nAri Jarvis\r\n\r\nSenior",
+      "match_id": 4191,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56487,
+      "match_string": " Hers",
+      "match_id": 4187,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56614,
+      "match_string": "\r\nShould you have any inquiries about the application process, do not hesitate to reach out to our",
+      "match_id": 4211,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56758,
+      "match_string": "s",
+      "match_id": 4228,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56938,
+      "match_string": "\r\n \r\nSincerely,\r\nGitHub",
+      "match_id": 4245,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56978,
+      "match_string": " Your anonymous feedback will be reviewed by our",
+      "match_id": 4248,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 57049,
+      "match_string": " Hudson Grace",
+      "match_id": 4250,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 57105,
+      "match_string": "\r\n\r\nAll the Best,\r\n\r\nShift4",
+      "match_id": 4260,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 57128,
+      "match_string": "s",
+      "match_id": 4228,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 57129,
+      "match_string": "LabConnect",
+      "match_id": 4262,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 57252,
+      "match_string": "\r\n\r\nWarm regards,\r\n\r\nDigiCert",
+      "match_id": 4280,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 57258,
+      "match_string": "NetApp Global",
+      "match_id": 4282,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 57428,
+      "match_string": " \r\n \r\n \r\nCharles Schwab",
+      "match_id": 4302,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56659,
+      "match_string": " Recruiter, Global",
+      "match_id": 4329,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 57025,
+      "match_string": "\r\n\r\nRegards,\r\n\r\nBILL",
+      "match_id": 4343,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 57334,
+      "match_string": "\r\n\r\nBlackpoint",
+      "match_id": 4352,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56668,
+      "match_string": "Dynatrace",
+      "match_id": 4363,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    },
+    {
+      "message_id": 56714,
+      "match_string": "The Netflix",
+      "match_id": 4366,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)([\\w\\s\\u00A0,\\(\\)]*) Talent Acquisition(?:\\sTeam)?"
+    }
+  ],
+  "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$": [
+    {
+      "message_id": 56016,
+      "match_string": "Capco",
+      "match_id": 4046,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56041,
+      "match_string": "Truepill",
+      "match_id": 4050,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56049,
+      "match_string": "Rula",
+      "match_id": 4051,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56145,
+      "match_string": "Disrupt Up",
+      "match_id": 4058,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56184,
+      "match_string": "Avalara",
+      "match_id": 4080,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56283,
+      "match_string": "Experian",
+      "match_id": 4097,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56288,
+      "match_string": "LegalZoom",
+      "match_id": 4112,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56338,
+      "match_string": "Orca",
+      "match_id": 4141,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56427,
+      "match_string": "10107614",
+      "match_id": 4180,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56482,
+      "match_string": "Imagine Learning",
+      "match_id": 4192,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56571,
+      "match_string": "Palo Alto Networks",
+      "match_id": 4200,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56633,
+      "match_string": "Airbnb",
+      "match_id": 4130,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56735,
+      "match_string": "Subzero Labs, Coinbase, Gemini (Daily)",
+      "match_id": 4222,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56739,
+      "match_string": "Vikar",
+      "match_id": 4223,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57071,
+      "match_string": "Superhuman",
+      "match_id": 4254,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57212,
+      "match_string": "Cortex",
+      "match_id": 4271,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57213,
+      "match_string": "Cortex",
+      "match_id": 4271,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57270,
+      "match_string": "Atlas",
+      "match_id": 4285,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57372,
+      "match_string": "Cohesity",
+      "match_id": 4293,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57444,
+      "match_string": "Ignite Retail Technology job posting was closed",
+      "match_id": 4303,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57526,
+      "match_string": "Hire Score LLC",
+      "match_id": 4306,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56370,
+      "match_string": "EVgo",
+      "match_id": 4314,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56391,
+      "match_string": "Vimeo",
+      "match_id": 4316,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56529,
+      "match_string": "LegalZoom",
+      "match_id": 4112,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57167,
+      "match_string": "Pinterest",
+      "match_id": 4370,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:[^\\-]+) at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    }
+  ],
+  "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$": [
+    {
+      "message_id": 56201,
+      "match_string": "Angi",
+      "match_id": 4089,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56208,
+      "match_string": "Avalara, Inc",
+      "match_id": 4093,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56213,
+      "match_string": "Opendoor",
+      "match_id": 4094,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56216,
+      "match_string": "Coinstar, LLC",
+      "match_id": 4096,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56298,
+      "match_string": "AirGarage",
+      "match_id": 4119,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56302,
+      "match_string": "Net Health",
+      "match_id": 4121,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56303,
+      "match_string": "The Motley Fool",
+      "match_id": 4122,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56308,
+      "match_string": "HealthEquity",
+      "match_id": 4088,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56311,
+      "match_string": "Core and Main",
+      "match_id": 4126,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56312,
+      "match_string": "Blend360",
+      "match_id": 4127,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56313,
+      "match_string": "Seismic",
+      "match_id": 4128,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56315,
+      "match_string": "Airbnb",
+      "match_id": 4130,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56316,
+      "match_string": "SharkNinja",
+      "match_id": 4131,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56317,
+      "match_string": "AnswerNet",
+      "match_id": 4132,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56233,
+      "match_string": "Machinify",
+      "match_id": 4146,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56239,
+      "match_string": "RH",
+      "match_id": 4150,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56243,
+      "match_string": "Unity Technologies",
+      "match_id": 4152,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56244,
+      "match_string": "SmithRx",
+      "match_id": 4153,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56245,
+      "match_string": "the Senior Engineering Manager, Synthetics (33031) position at Splunk",
+      "match_id": 4154,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56254,
+      "match_string": "America Votes",
+      "match_id": 4160,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56353,
+      "match_string": "Webflow",
+      "match_id": 4173,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56397,
+      "match_string": "Cotiviti",
+      "match_id": 4175,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56420,
+      "match_string": "join the Paradigm Health team",
+      "match_id": 4179,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56435,
+      "match_string": "Nextiva",
+      "match_id": 4183,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56561,
+      "match_string": "Bigeye",
+      "match_id": 4195,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56563,
+      "match_string": "the Sr Director, Enterprise Architecture with Ascension",
+      "match_id": 4196,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56573,
+      "match_string": "Fetch",
+      "match_id": 4202,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56600,
+      "match_string": "Superhuman, Christopher",
+      "match_id": 4209,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56640,
+      "match_string": "MyFitnessPal",
+      "match_id": 4215,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56716,
+      "match_string": "Vercel",
+      "match_id": 4218,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56755,
+      "match_string": "Software Engineering Manager at AffiniPay",
+      "match_id": 4227,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56808,
+      "match_string": "Perceptyx",
+      "match_id": 4238,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57132,
+      "match_string": "CoinTracker, Christopher",
+      "match_id": 4264,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57238,
+      "match_string": "OneStudyTeam",
+      "match_id": 4273,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57241,
+      "match_string": "MoCaFi (Mobility Capital Finance, Inc)",
+      "match_id": 4274,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57242,
+      "match_string": "Redesign Health",
+      "match_id": 4275,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57246,
+      "match_string": "MasterControl",
+      "match_id": 4278,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57275,
+      "match_string": "Motion",
+      "match_id": 4287,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57278,
+      "match_string": "The Lactation Network",
+      "match_id": 4289,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57368,
+      "match_string": "Hasbro",
+      "match_id": 4292,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57392,
+      "match_string": "Senior Manager, Engineering (Remote Eligible)",
+      "match_id": 4296,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57399,
+      "match_string": "McGraw Hill",
+      "match_id": 4298,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57402,
+      "match_string": "SpotOn",
+      "match_id": 4299,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57417,
+      "match_string": "Calendly",
+      "match_id": 4301,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56360,
+      "match_string": "HiBob",
+      "match_id": 4313,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56518,
+      "match_string": "HubSpot",
+      "match_id": 4317,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56528,
+      "match_string": "Skillsoft",
+      "match_id": 4318,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56535,
+      "match_string": "Vitech",
+      "match_id": 4322,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56656,
+      "match_string": "Sharetec",
+      "match_id": 4326,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56863,
+      "match_string": "Arista Networks",
+      "match_id": 4335,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56869,
+      "match_string": "Gemini",
+      "match_id": 4337,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56886,
+      "match_string": "SentinelOne",
+      "match_id": 4339,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57141,
+      "match_string": "Calibrate",
+      "match_id": 4346,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57311,
+      "match_string": "Roboyo",
+      "match_id": 4350,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57357,
+      "match_string": "DigitalOcean",
+      "match_id": 4354,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57358,
+      "match_string": "SeatGeek",
+      "match_id": 4355,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 56712,
+      "match_string": "Renew",
+      "match_id": 4365,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57159,
+      "match_string": "UiPath",
+      "match_id": 4362,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57161,
+      "match_string": "Crewfare",
+      "match_id": 4368,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57162,
+      "match_string": "Spanx",
+      "match_id": 4342,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    },
+    {
+      "message_id": 57190,
+      "match_string": "Spring Health",
+      "match_id": 4237,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for applying (?:to|for|at|with|from)+\\s?(?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)!?$"
+    }
+  ],
+  "(?i)^(?:thank you|thanks|thanx|thank you so much) for your application to (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)$": [
+    {
+      "message_id": 56290,
+      "match_string": "Figma",
+      "match_id": 4113,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your application to (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56342,
+      "match_string": "Hiive",
+      "match_id": 4143,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your application to (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56587,
+      "match_string": "Gensyn",
+      "match_id": 4204,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your application to (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56891,
+      "match_string": "Lime",
+      "match_id": 4241,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your application to (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57486,
+      "match_string": "Oracle",
+      "match_id": 4359,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your application to (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)$"
+    }
+  ],
+  "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:[\\d\\w\\s\\u00A0,\\(\\)\\[\\]]*) at ([\\w\\s\\u00A0,\\(\\)]*)": [
+    {
+      "message_id": 56171,
+      "match_string": "Affirm",
+      "match_id": 4069,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:[\\d\\w\\s\\u00A0,\\(\\)\\[\\]]*) at ([\\w\\s\\u00A0,\\(\\)]*)"
+    },
+    {
+      "message_id": 57198,
+      "match_string": "InDebted",
+      "match_id": 4268,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:[\\d\\w\\s\\u00A0,\\(\\)\\[\\]]*) at ([\\w\\s\\u00A0,\\(\\)]*)"
+    }
+  ],
+  "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$": [
+    {
+      "message_id": 56064,
+      "match_string": "CaptivateIQ, Christopher",
+      "match_id": 4054,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 56168,
+      "match_string": "NBCUniversal",
+      "match_id": 4068,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 56180,
+      "match_string": "Babylist",
+      "match_id": 4077,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 56187,
+      "match_string": "ReadMe, Christopher",
+      "match_id": 4082,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 56207,
+      "match_string": "Zilliant",
+      "match_id": 4092,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 56215,
+      "match_string": "Emergent Software",
+      "match_id": 4095,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 56217,
+      "match_string": "Experian",
+      "match_id": 4097,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 56218,
+      "match_string": "Kyruus Health, Christopher",
+      "match_id": 4098,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 56231,
+      "match_string": "Candid",
+      "match_id": 4104,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 56297,
+      "match_string": "Ford Motor Company",
+      "match_id": 4118,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 56330,
+      "match_string": "Netskope",
+      "match_id": 4138,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 56349,
+      "match_string": "Yardzen, Christopher",
+      "match_id": 4171,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 56486,
+      "match_string": "Givebutter",
+      "match_id": 4193,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 56815,
+      "match_string": "Arine",
+      "match_id": 4240,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 57106,
+      "match_string": "Under Armour",
+      "match_id": 4261,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 57202,
+      "match_string": "Beacon Biosignals",
+      "match_id": 4269,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 57243,
+      "match_string": "GameChanger",
+      "match_id": 4276,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 56533,
+      "match_string": "ABC Fitness",
+      "match_id": 4321,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 57023,
+      "match_string": "Spanx",
+      "match_id": 4342,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 57036,
+      "match_string": "TRUE Property Insurance",
+      "match_id": 4344,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 57309,
+      "match_string": "Greenway Health",
+      "match_id": 4348,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 57341,
+      "match_string": "Basis Technologies, Christopher",
+      "match_id": 4353,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    },
+    {
+      "message_id": 57626,
+      "match_string": "Ford Motor Company",
+      "match_id": 4118,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in (?:a position at )?([\\w\\s\\u00A0,\\(\\)]*)[\\.!]?$"
+    }
+  ],
+  "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in ([\\w\\s\\u00A0,\\(\\)]*)!$": [
+    {
+      "message_id": 56266,
+      "match_string": "NBCUniversal",
+      "match_id": 4068,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in ([\\w\\s\\u00A0,\\(\\)]*)!$"
+    },
+    {
+      "message_id": 56642,
+      "match_string": "Underdog Sports",
+      "match_id": 4217,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in ([\\w\\s\\u00A0,\\(\\)]*)!$"
+    },
+    {
+      "message_id": 57244,
+      "match_string": "Help Scout, Christopher",
+      "match_id": 4277,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in ([\\w\\s\\u00A0,\\(\\)]*)!$"
+    },
+    {
+      "message_id": 57262,
+      "match_string": "Cortex",
+      "match_id": 4271,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in ([\\w\\s\\u00A0,\\(\\)]*)!$"
+    },
+    {
+      "message_id": 56852,
+      "match_string": "Ashby",
+      "match_id": 4334,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in ([\\w\\s\\u00A0,\\(\\)]*)!$"
+    },
+    {
+      "message_id": 57300,
+      "match_string": "Underdog Sports",
+      "match_id": 4217,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in ([\\w\\s\\u00A0,\\(\\)]*)!$"
+    },
+    {
+      "message_id": 57315,
+      "match_string": "ScienceLogic",
+      "match_id": 4351,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) for your interest in ([\\w\\s\\u00A0,\\(\\)]*)!$"
+    }
+  ],
+  "(?i)^(?:thank you|thanks|thanx|thank you so much) from ([\\w\\s\\u00A0,\\(\\)]*)$": [
+    {
+      "message_id": 56040,
+      "match_string": "Headway",
+      "match_id": 4049,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) from ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56153,
+      "match_string": "Noom",
+      "match_id": 4060,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) from ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56772,
+      "match_string": "Gusto",
+      "match_id": 4229,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) from ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57449,
+      "match_string": "BEP Back Office SaaS Solutions",
+      "match_id": 4305,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^(?:thank you|thanks|thanx|thank you so much) from ([\\w\\s\\u00A0,\\(\\)]*)$"
+    }
+  ],
+  "(?i)^([\\d\\w\\s\\u00A0,\\(\\)\\[\\]]*) application: ([\\w\\s\\u00A0,\\(\\)]*)$": [
+    {
+      "message_id": 56251,
+      "match_string": "Your Seismic",
+      "match_id": 4159,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\d\\w\\s\\u00A0,\\(\\)\\[\\]]*) application: ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56979,
+      "match_string": "Track Your",
+      "match_id": 4249,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\d\\w\\s\\u00A0,\\(\\)\\[\\]]*) application: ([\\w\\s\\u00A0,\\(\\)]*)$"
+    }
+  ],
+  "(?i)^([\\w\\s\\u00A0,\\(\\)]*) - (?:thank you|thanks|thanx|thank you so much) for applying$": [
+    {
+      "message_id": 56275,
+      "match_string": "Application Complete",
+      "match_id": 4167,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\w\\s\\u00A0,\\(\\)]*) - (?:thank you|thanks|thanx|thank you so much) for applying$"
+    },
+    {
+      "message_id": 57373,
+      "match_string": "Gainwell Technologies LLC",
+      "match_id": 4294,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\w\\s\\u00A0,\\(\\)]*) - (?:thank you|thanks|thanx|thank you so much) for applying$"
+    }
+  ],
+  "(?i)^([\\w\\s\\u00A0,\\(\\)]*) Application Status$": [
+    {
+      "message_id": 57305,
+      "match_string": "McGraw Hill",
+      "match_id": 4298,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\w\\s\\u00A0,\\(\\)]*) Application Status$"
+    }
+  ],
+  "(?i)^([\\w\\s\\u00A0,\\(\\)]*) Application Update": [
+    {
+      "message_id": 56146,
+      "match_string": "FIS",
+      "match_id": 4059,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\w\\s\\u00A0,\\(\\)]*) Application Update"
+    },
+    {
+      "message_id": 56160,
+      "match_string": "Lumata Health",
+      "match_id": 4062,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\w\\s\\u00A0,\\(\\)]*) Application Update"
+    },
+    {
+      "message_id": 56280,
+      "match_string": "Juniper Square",
+      "match_id": 4106,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\w\\s\\u00A0,\\(\\)]*) Application Update"
+    },
+    {
+      "message_id": 56281,
+      "match_string": "Argano Job",
+      "match_id": 4107,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\w\\s\\u00A0,\\(\\)]*) Application Update"
+    },
+    {
+      "message_id": 56410,
+      "match_string": "Splunk",
+      "match_id": 4177,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\w\\s\\u00A0,\\(\\)]*) Application Update"
+    },
+    {
+      "message_id": 56631,
+      "match_string": "Shopify",
+      "match_id": 4213,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\w\\s\\u00A0,\\(\\)]*) Application Update"
+    },
+    {
+      "message_id": 56970,
+      "match_string": "EAB",
+      "match_id": 4247,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\w\\s\\u00A0,\\(\\)]*) Application Update"
+    },
+    {
+      "message_id": 57411,
+      "match_string": "Zapier",
+      "match_id": 4055,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\w\\s\\u00A0,\\(\\)]*) Application Update"
+    }
+  ],
+  "(?i)^([\\w\\s\\u00A0,\\(\\)]*) \\| (?:thank you|thanks|thanx|thank you so much) for your application$": [
+    {
+      "message_id": 56866,
+      "match_string": "Imprint",
+      "match_id": 4336,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\w\\s\\u00A0,\\(\\)]*) \\| (?:thank you|thanks|thanx|thank you so much) for your application$"
+    }
+  ],
+  "(?i)^([\\w\\s\\u00A0,\\(\\)]*) \\| Thank you for applying$": [
+    {
+      "message_id": 56775,
+      "match_string": "Block",
+      "match_id": 4230,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\w\\s\\u00A0,\\(\\)]*) \\| Thank you for applying$"
+    }
+  ],
+  "(?i)^([\\w\\s\\u00A0,\\(\\)]*): Update on your candidacy": [
+    {
+      "message_id": 56162,
+      "match_string": "Greenhouse",
+      "match_id": 4064,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^([\\w\\s\\u00A0,\\(\\)]*): Update on your candidacy"
+    }
+  ],
+  "(?i)^Application Update from ([\\w\\s\\u00A0,\\(\\)]*)$": [
+    {
+      "message_id": 56878,
+      "match_string": "Big Ideas Learning",
+      "match_id": 4338,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Application Update from ([\\w\\s\\u00A0,\\(\\)]*)$"
+    }
+  ],
+  "(?i)^Interview with ([\\w\\s\\u00A0,\\(\\)]*)$": [
+    {
+      "message_id": 56007,
+      "match_string": "Graham",
+      "match_id": 4045,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Interview with ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56595,
+      "match_string": "Productiv",
+      "match_id": 4206,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Interview with ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56690,
+      "match_string": "RCX Sports",
+      "match_id": 4364,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Interview with ([\\w\\s\\u00A0,\\(\\)]*)$"
+    }
+  ],
+  "(?i)^Phone interview with ([\\w\\s\\u00A0,\\(\\)]*)$": [
+    {
+      "message_id": 57343,
+      "match_string": "The Motley Fool",
+      "match_id": 4122,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Phone interview with ([\\w\\s\\u00A0,\\(\\)]*)$"
+    }
+  ],
+  "(?i)^Regarding your application to ([\\w\\s\\u00A0,\\(\\)]*)$": [
+    {
+      "message_id": 56179,
+      "match_string": "DataKind (Senior Director, Engineering)",
+      "match_id": 4076,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Regarding your application to ([\\w\\s\\u00A0,\\(\\)]*)$"
+    }
+  ],
+  "(?i)^Update on your (?:application|candidacy) (?:to|for|at|with|from) ([\\w\\s\\u00A0,\\(\\)]*)$": [
+    {
+      "message_id": 56182,
+      "match_string": "NetBox Labs",
+      "match_id": 4079,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Update on your (?:application|candidacy) (?:to|for|at|with|from) ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56186,
+      "match_string": "Dropbox",
+      "match_id": 4081,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Update on your (?:application|candidacy) (?:to|for|at|with|from) ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56229,
+      "match_string": "Paxos",
+      "match_id": 4103,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Update on your (?:application|candidacy) (?:to|for|at|with|from) ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56305,
+      "match_string": "Aleph",
+      "match_id": 4123,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Update on your (?:application|candidacy) (?:to|for|at|with|from) ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57059,
+      "match_string": "Lattice",
+      "match_id": 4252,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Update on your (?:application|candidacy) (?:to|for|at|with|from) ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57585,
+      "match_string": "Senior Engineering Manager, Analytical Data Platform",
+      "match_id": 4309,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Update on your (?:application|candidacy) (?:to|for|at|with|from) ([\\w\\s\\u00A0,\\(\\)]*)$"
+    }
+  ],
+  "(?i)^Update on your ([\\w\\s\\u00A0,\\(\\)]*) Application": [
+    {
+      "message_id": 56137,
+      "match_string": "Alma",
+      "match_id": 4057,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Update on your ([\\w\\s\\u00A0,\\(\\)]*) Application"
+    },
+    {
+      "message_id": 56337,
+      "match_string": "Stripe",
+      "match_id": 4140,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Update on your ([\\w\\s\\u00A0,\\(\\)]*) Application"
+    },
+    {
+      "message_id": 56963,
+      "match_string": "Manager, Engineering, Web, Microservices",
+      "match_id": 4246,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Update on your ([\\w\\s\\u00A0,\\(\\)]*) Application"
+    }
+  ],
+  "(?i)^Welcome to ([\\w\\s\\u00A0,\\(\\)]*)$": [
+    {
+      "message_id": 56474,
+      "match_string": "Google Workspace",
+      "match_id": 4190,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Welcome to ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57183,
+      "match_string": "Siemens Careers",
+      "match_id": 4372,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Welcome to ([\\w\\s\\u00A0,\\(\\)]*)$"
+    }
+  ],
+  "(?i)^Your application at ([\\w\\s\\u00A0,\\(\\)]*)$": [
+    {
+      "message_id": 56750,
+      "match_string": "Hard Rock Digital",
+      "match_id": 4226,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Your application at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57446,
+      "match_string": "Playback Rewards",
+      "match_id": 4304,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Your application at ([\\w\\s\\u00A0,\\(\\)]*)$"
+    }
+  ],
+  "(?i)^Your application for ([\\w\\s\\u00A0,\\(\\)]*)$": [
+    {
+      "message_id": 56125,
+      "match_string": "Director of Engineering",
+      "match_id": 4056,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Your application for ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57269,
+      "match_string": "Senior Engineering Manager, Core Product",
+      "match_id": 4284,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Your application for ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57539,
+      "match_string": "Posit",
+      "match_id": 4307,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Your application for ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57550,
+      "match_string": "Grafana Labs",
+      "match_id": 4308,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Your application for ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 56831,
+      "match_string": "the Position Engineering Manager",
+      "match_id": 4331,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Your application for ([\\w\\s\\u00A0,\\(\\)]*)$"
+    }
+  ],
+  "(?i)^Your application with ([\\w\\s\\u00A0,\\(\\)]*)$": [
+    {
+      "message_id": 56246,
+      "match_string": "Advantive",
+      "match_id": 4155,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Your application with ([\\w\\s\\u00A0,\\(\\)]*)$"
+    },
+    {
+      "message_id": 57513,
+      "match_string": "UiPath",
+      "match_id": 4362,
+      "match_type": "subject_pattern",
+      "match_detail": "(?i)^Your application with ([\\w\\s\\u00A0,\\(\\)]*)$"
+    }
+  ],
+  "(?i)to discuss the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* opportunity at ([\\w\\s\\u00A0,\\(\\)]*)\\.": [
+    {
+      "message_id": 56164,
+      "match_string": "SuperAnnotate\r\nbefore moving forward with the hiring manager",
+      "match_id": 4065,
+      "match_type": "body_pattern",
+      "match_detail": "(?i)to discuss the [\\d\\w\\s\\u00A0,\\(\\)\\[\\]]* opportunity at ([\\w\\s\\u00A0,\\(\\)]*)\\."
+    }
+  ],
+  "['(?i)^([\\\\w\\\\s]*) <no-reply@hire.lever.co>$']": [
+    {
+      "message_id": 55984,
+      "match_string": "Veeva Systems",
+      "match_id": 4042,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56050,
+      "match_string": "Minted",
+      "match_id": 4052,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56157,
+      "match_string": "Nova Credit",
+      "match_id": 4061,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56190,
+      "match_string": "Quartzy",
+      "match_id": 4083,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56206,
+      "match_string": "Anchorage Digital",
+      "match_id": 4091,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56227,
+      "match_string": "CertifID",
+      "match_id": 4101,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56286,
+      "match_string": "FloQast",
+      "match_id": 4110,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56293,
+      "match_string": "Aledade",
+      "match_id": 4114,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56295,
+      "match_string": "StarCompliance",
+      "match_id": 4116,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56300,
+      "match_string": "Toptal",
+      "match_id": 4120,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56306,
+      "match_string": "Kyruus Health",
+      "match_id": 4124,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56331,
+      "match_string": "PointClickCare",
+      "match_id": 4139,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56344,
+      "match_string": "OpenX",
+      "match_id": 4144,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56240,
+      "match_string": "Loop",
+      "match_id": 4151,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56249,
+      "match_string": "Kong",
+      "match_id": 4157,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56257,
+      "match_string": "Orum",
+      "match_id": 4161,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56271,
+      "match_string": "CaptivateIQ",
+      "match_id": 4165,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56276,
+      "match_string": "Trend Health Partners",
+      "match_id": 4168,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56278,
+      "match_string": "LeoLabs",
+      "match_id": 4169,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56359,
+      "match_string": "Addition",
+      "match_id": 4174,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56431,
+      "match_string": "CareMessage",
+      "match_id": 4181,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56439,
+      "match_string": "Ellevation",
+      "match_id": 4184,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56444,
+      "match_string": "Pano",
+      "match_id": 4186,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56572,
+      "match_string": "ThreatConnect",
+      "match_id": 4201,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56593,
+      "match_string": "Loop Returns",
+      "match_id": 4205,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56722,
+      "match_string": "Smartcar",
+      "match_id": 4221,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56740,
+      "match_string": "Greenlight Financial Technology",
+      "match_id": 4224,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56747,
+      "match_string": "Avalere Health",
+      "match_id": 4225,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56799,
+      "match_string": "Raya",
+      "match_id": 4234,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56800,
+      "match_string": "Collectly",
+      "match_id": 4235,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56812,
+      "match_string": "Hone",
+      "match_id": 4239,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56923,
+      "match_string": "PollyEx",
+      "match_id": 4244,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56941,
+      "match_string": "1Password",
+      "match_id": 4075,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57061,
+      "match_string": "Anovium",
+      "match_id": 4253,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57104,
+      "match_string": "Delfi Diagnostics",
+      "match_id": 4259,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57130,
+      "match_string": "OM1",
+      "match_id": 4263,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57136,
+      "match_string": "The Athletic Media Company",
+      "match_id": 4266,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57137,
+      "match_string": "PeerSpace",
+      "match_id": 4267,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57235,
+      "match_string": "Attentive",
+      "match_id": 4272,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57247,
+      "match_string": "Beacon Biosignals",
+      "match_id": 4269,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57249,
+      "match_string": "Restaurant365",
+      "match_id": 4279,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57265,
+      "match_string": "Talkiatry",
+      "match_id": 4283,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57281,
+      "match_string": "Beam Benefits",
+      "match_id": 4290,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57398,
+      "match_string": "Sana Benefits",
+      "match_id": 4297,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57403,
+      "match_string": "Basis Technologies",
+      "match_id": 4300,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57591,
+      "match_string": "Happy Money",
+      "match_id": 4310,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57610,
+      "match_string": "Ro",
+      "match_id": 4312,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56530,
+      "match_string": "Yardzen",
+      "match_id": 4319,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56532,
+      "match_string": "Pano AI",
+      "match_id": 4320,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56651,
+      "match_string": "StraighterLine",
+      "match_id": 4324,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56658,
+      "match_string": "Apollo",
+      "match_id": 4328,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 56837,
+      "match_string": "Gorilla Logic",
+      "match_id": 4333,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57140,
+      "match_string": "Included Health",
+      "match_id": 4345,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57364,
+      "match_string": "Protegrity",
+      "match_id": 4356,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57160,
+      "match_string": "Heard",
+      "match_id": 4367,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    },
+    {
+      "message_id": 57166,
+      "match_string": "StackAdapt",
+      "match_id": 4369,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) <no-reply@hire.lever.co>$"
+      ]
+    }
+  ],
+  "['(?i)^([\\\\w\\\\s]*) Career Opportunities <do-not-reply@']": [
+    {
+      "message_id": 56161,
+      "match_string": "Follett Corporation",
+      "match_id": 4063,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Career Opportunities <do-not-reply@"
+      ]
+    },
+    {
+      "message_id": 56418,
+      "match_string": "Conservice",
+      "match_id": 4178,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Career Opportunities <do-not-reply@"
+      ]
+    }
+  ],
+  "['(?i)^([\\\\w\\\\s]*) Hiring Team <no-reply@ashbyhq.com>$']": [
+    {
+      "message_id": 56006,
+      "match_string": "Phil",
+      "match_id": 4044,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56017,
+      "match_string": "Wrapbook",
+      "match_id": 4047,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56066,
+      "match_string": "Zapier",
+      "match_id": 4055,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56178,
+      "match_string": "1Password",
+      "match_id": 4075,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56202,
+      "match_string": "Flowhub",
+      "match_id": 4090,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56222,
+      "match_string": "ReadMe",
+      "match_id": 4100,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56279,
+      "match_string": "Place Exchange",
+      "match_id": 4105,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56282,
+      "match_string": "Mapbox",
+      "match_id": 4108,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56307,
+      "match_string": "Kalibri Labs",
+      "match_id": 4125,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56329,
+      "match_string": "Acorns",
+      "match_id": 4137,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56341,
+      "match_string": "Anrok",
+      "match_id": 4142,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56232,
+      "match_string": "Timescale",
+      "match_id": 4145,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56238,
+      "match_string": "Great Question",
+      "match_id": 4149,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56346,
+      "match_string": "Qventus",
+      "match_id": 4170,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56557,
+      "match_string": "Miter",
+      "match_id": 4194,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56576,
+      "match_string": "Solace",
+      "match_id": 4203,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56601,
+      "match_string": "Kustomer",
+      "match_id": 4210,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56626,
+      "match_string": "Vanta",
+      "match_id": 4212,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56636,
+      "match_string": "Scribd",
+      "match_id": 4214,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56719,
+      "match_string": "Chainlink Labs",
+      "match_id": 4220,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56789,
+      "match_string": "Forward Financing",
+      "match_id": 4233,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56802,
+      "match_string": "Fullstory",
+      "match_id": 4236,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 57082,
+      "match_string": "Going",
+      "match_id": 4255,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 57101,
+      "match_string": "OP",
+      "match_id": 4258,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 57271,
+      "match_string": "Deel",
+      "match_id": 4286,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56381,
+      "match_string": "Street Diligence",
+      "match_id": 4315,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56655,
+      "match_string": "PAR Technology",
+      "match_id": 4325,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 56661,
+      "match_string": "Flock Safety",
+      "match_id": 4330,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    },
+    {
+      "message_id": 57484,
+      "match_string": "Real",
+      "match_id": 4357,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Hiring Team <no-reply@ashbyhq.com>$"
+      ]
+    }
+  ],
+  "['(?i)^([\\\\w\\\\s]*) Recruitment <no-reply@ashbyhq.com>$']": [
+    {
+      "message_id": 56237,
+      "match_string": "Dandy",
+      "match_id": 4148,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^([\\w\\s]*) Recruitment <no-reply@ashbyhq.com>$"
+      ]
+    }
+  ],
+  "['(?i)^[\\\\w\\\\.+-]+@jobs\\\\.([\\\\w-]+)\\\\.com$']": [
+    {
+      "message_id": 57089,
+      "match_string": "netflix",
+      "match_id": 4256,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^[\\w\\.+-]+@jobs\\.([\\w-]+)\\.com$"
+      ]
+    }
+  ],
+  "['(?i)^careers@([\\\\w-]+)\\\\.io$']": [
+    {
+      "message_id": 56893,
+      "match_string": "prismatic",
+      "match_id": 4242,
+      "match_type": "email_pattern",
+      "match_detail": [
+        "(?i)^careers@([\\w-]+)\\.io$"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+sub_components:
+  subdomain: '[\w-]+'
+  email_user: '[\w\.-]+'
+  bamboohr: 'bamboohr'
+  workday: 'myworkday'
+  greenhouse: 'greenhouse'
+  lever: 'lever'
+  rippling: 'rippling'
+  ashbyhq: 'ashbyhq'
+  workable: 'workablemail'
+  # Add more as needed
+
+components:
+  bamboohr_sender: 'notifications@app.{{bamboohr}}.com'
+  workday_sender: '{{email_user}}@{{workday}}.com'
+  greenhouse_sender: 'noreply@{{subdomain}}.{{greenhouse}}.io'
+  greenhouse_mail_sender: 'no-reply@{{subdomain}}.greenhouse-mail.io'
+  lever_sender: 'do-not-reply@{{subdomain}}.{{lever}}.co'
+  rippling_sender: 'no-reply@ats.{{rippling}}.com'
+  ashbyhq_sender: 'no-reply@{{subdomain}}.{{ashbyhq}}.com'
+  workable_sender: 'noreply@candidates.{{workable}}.com'
+
+patterns:
+  sender_patterns:
+    bamboohr_sender:
+      key: 'bamboohr'
+      value: '{{bamboohr_sender}}'
+    workday_sender:
+      key: 'workday'
+      value: '{{workday_sender}}'
+    greenhouse_sender:
+      key: 'greenhouse'
+      value: '{{greenhouse_sender}}'
+    greenhouse_mail_sender:
+      key: 'greenhouse_mail'
+      value: '{{greenhouse_mail_sender}}'
+    lever_sender:
+      key: 'lever'
+      value: '{{lever_sender}}'
+    rippling_sender:
+      key: 'rippling'
+      value: '{{rippling_sender}}'
+    ashbyhq_sender:
+      key: 'ashbyhq'
+      value: '{{ashbyhq_sender}}'
+    workable_sender:
+      key: 'workable'
+      value: '{{workable_sender}}'

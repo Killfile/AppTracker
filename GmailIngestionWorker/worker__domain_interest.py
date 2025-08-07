@@ -122,7 +122,7 @@ class DomainInterestWorker:
                 else:
                     print(f"🔑 Message {email.gmail_message_id} from domain {email.from_address} flagged for followup for user: {user_id}",flush=True)
                     gateway = self._get_gateway(user_id)
-                    self.label_message(gateway, user_id, "AppTracker: Domain Flagged", email.gmail_message_id)
+                    self.label_message(gateway, user_id, "AppTracker/Domain", email.gmail_message_id)
                     self._domain_interest_producer.send(value)
            
 

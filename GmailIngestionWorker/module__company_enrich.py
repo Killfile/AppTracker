@@ -1,5 +1,6 @@
 
 from sqlalchemy import ClauseElement
+from MessageMatchers.message_match import MessageMatch
 from abstract_enrichment_module import AbstractEnrichmentModule
 from MessageEnrichers.abstract_message_pattern_matcher import AbstractMessagePatternMatcher
 from apptracker_database.models import Message
@@ -14,6 +15,7 @@ from MessageMatchers.company_matcher__known_email_address import CompanyMatcher_
 from MessageMatchers.company_matcher__pattern_body import CompanyMatcher_PatternBody
 from MessageMatchers.company_matcher__pattern_email import CompanyMatcher_PatternEmail
 from MessageMatchers.company_matcher__pattern_subject import CompanyMatcher_PatternSubject
+from typing import List, Optional, Tuple
 
 
 class CompanyNamePatternMatcher(AbstractMessagePatternMatcher):
@@ -21,7 +23,7 @@ class CompanyNamePatternMatcher(AbstractMessagePatternMatcher):
                  email_dao: EmailAddressDAO, message_dao: MessageDAO, link_dao: EmailCompanyLinkDAO,
                  db: Session, config_path: str = "company_pattern_matching.yml"):
 
-        super().__init__(db, config_path)
+        super().__init__(db, config_path, "company_name_exhaust.json")
 
         self.add_matcher(CompanyMatcher_KnownEmailAddress(patterns=self._config_path))
         self.add_matcher(CompanyMatcher_PatternEmail(patterns=self._config_path))
@@ -32,8 +34,8 @@ class CompanyNamePatternMatcher(AbstractMessagePatternMatcher):
         self._message_dao = message_dao
         self._link_dao = link_dao
 
-    def _process_matched_message(self, message: Message, matches) -> bool:
-        
+    def _process_matched_message(self, message: Message, matches: List[MessageMatch]) -> Tuple[bool, Optional[str]]:
+
         self._message_dao.update(message.id, company_id=message.company_id)
         email = self._email_dao.get_by_email(message.email_address.email)
         if not email:
@@ -42,7 +44,7 @@ class CompanyNamePatternMatcher(AbstractMessagePatternMatcher):
         mapping_source = f"{matches[0].match_type} - {matches[0].match_detail}"[:63]
         if self._link_dao.get_link(email.id, message.company_id):
             print(f"🔗 Email {email.email} already linked to company {message.company_id}. Skipping", flush=True)
-            return False
+            return False, None
         print(f"🔗 Linking email {email.email} to company {message.company_id} with source {mapping_source}", flush=True)
         self._link_dao.create_link(
             email_address_id=email.id,
@@ -51,7 +53,7 @@ class CompanyNamePatternMatcher(AbstractMessagePatternMatcher):
             source=mapping_source,
             is_verified=True
         )
-        return True
+        return True, matches[0].match_string
 
 
 LABEL_TOPIC = "gmail-label-requests"
@@ -59,6 +61,10 @@ LABEL_TOPIC = "gmail-label-requests"
 class CompanyEnrichmentModule(AbstractEnrichmentModule):
     def __init__(self, label_producer):
         super().__init__(label_producer)
+    
+    @property
+    def exhaust_filename(self) -> str:
+        return "company_enrichment_exhaust.txt"
 
     @property
     def message_filter(self) -> ClauseElement:
@@ -74,7 +80,7 @@ class CompanyEnrichmentModule(AbstractEnrichmentModule):
     
     @property
     def label_text(self) -> str:
-        return "AppTracker: Company Found"
+        return "AppTracker/Company"
     
     def additional_log_data(self, message: Message) -> str:
         return f"from Email: {message.email_address.email} with Company ID: {message.company_id}"   

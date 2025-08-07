@@ -32,15 +32,39 @@ class RegexCompiler:
         for name, val in self.config['components'].items():
             comps[name] = self._replace_anchors(val, self.sub_components)
         return comps
+    
+    def _parse_list_of_patterns(self, patterns: List[str]) -> Dict[str, str]:
+        parsed_patterns = {}
+        for i, pat in enumerate(patterns):
+            key = f'key_{i}'
+            parsed_patterns[key] = self._replace_anchors(pat, self.components)
+        return parsed_patterns
+    
+    def _parse_dict_of_patterns(self, patterns: Dict[str, str]) -> Dict[str, str]:
+        parsed_patterns = {}
+        for key, pat in patterns.items():
+            key = pat.get("key", key)
+            value = pat.get("value", "")
+            parsed_patterns[key] = self._replace_anchors(value, self.components)
+        return parsed_patterns
 
     def _build_patterns(self) -> Dict[str, List[str]]:
         patterns = {}
         lookup = {**self.sub_components, **self.components}
 
         for pat_group, pat_list in self.config["patterns"].items():
-            compiled_list = []
-            for pat in pat_list:
-                compiled_list.append(self._replace_anchors(pat, lookup))
+            compiled_list = {}
+            if isinstance(pat_list, dict):
+                # If the pattern is a dictionary, parse it directly
+                compiled_list = self._parse_dict_of_patterns(pat_list)
+            elif isinstance(pat_list, list):
+                # Otherwise, treat it as a list of patterns
+                compiled_list = self._parse_list_of_patterns(pat_list)
+            else:
+                raise RegexCompilerError(f"Invalid pattern format for group '{pat_group}': {pat_list}")
+
+           
+
             patterns[pat_group] = compiled_list
         return patterns
 

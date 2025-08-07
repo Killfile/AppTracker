@@ -148,6 +148,32 @@ services:
       - ../GmailIngestionWorker:/app:rw
     command: python worker__gmail_history_ingestor.py
 
+  worker_hr_platform_classifier:
+    build:
+      context: ../GmailIngestionWorker
+      dockerfile: Dockerfile
+      args:
+        DEV_MODE: ${DEV_MODE-false}
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+    container_name: worker_hr_platform_classifier
+    depends_on:
+      kafka:
+        condition: service_healthy
+    networks:
+      - appnet
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - DATABASE_URL=mysql+pymysql://appuser:appuserpassword@mysql:3306/apptracker
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_PROJECT_ID=${GOOGLE_PROJECT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+    volumes:
+      - ../GmailIngestionWorker:/app:rw
+    command: python worker__hr_platform_classifier.py
+
   worker_keywordclassification:
     build:
       context: ../GmailIngestionWorker

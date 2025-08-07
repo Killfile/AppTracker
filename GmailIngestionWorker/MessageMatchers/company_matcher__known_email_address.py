@@ -14,10 +14,10 @@ import re
 class CompanyMatcher_KnownEmailAddress(AbstractMessageMatcherStage):
     def __init__(self, patterns="company_pattern_matching.yml"):
         self.regex_compiler = RegexCompiler(patterns)
-        self._blacklisted_email_patterns = self.regex_compiler.get_patterns().get("blacklisted_email", [])
+        self._blacklisted_email_patterns = self.regex_compiler.get_patterns().get("blacklisted_email", {})
 
     def _is_blacklisted(self, email_address)->bool:
-        for value in self._blacklisted_email_patterns:
+        for value in self._blacklisted_email_patterns.values():
             if re.search(value, email_address):
                 return True
         return False

@@ -1,4 +1,5 @@
 
+from typing import Tuple, Optional
 from sqlalchemy import ClauseElement, and_
 from MessageMatchers.message_match import MessageMatch
 from abstract_enrichment_module import AbstractEnrichmentModule
@@ -17,7 +18,7 @@ class ApplicationPatternMatcher(AbstractMessagePatternMatcher):
                  email_dao: EmailAddressDAO, message_dao: MessageDAO, application_dao: ApplicationDAO,
                  db: Session, config_path: str = "application_pattern_matching.yml"):
 
-        super().__init__(db, config_path)
+        super().__init__(db, config_path, "application_pattern_matching_exhaust.json")
 
         self.add_matcher(ApplicationMatcher_PatternBody(pattern_file=self._config_path))
         
@@ -26,7 +27,7 @@ class ApplicationPatternMatcher(AbstractMessagePatternMatcher):
         self._message_dao = message_dao
         self._application_dao = application_dao
 
-    def _process_matched_message(self, message: Message, matches: list[MessageMatch]) -> bool:
+    def _process_matched_message(self, message: Message, matches: list[MessageMatch]) -> Tuple[bool, Optional[str]]:
         
         application = None
         candidate_applications = self._application_dao.get_applications_by_company_and_user(
@@ -46,7 +47,7 @@ class ApplicationPatternMatcher(AbstractMessagePatternMatcher):
             print(f"🔍🎯 Found existing application: {application.title} for user {message.user_id} and company {message.company_id}")
         
         self._message_dao.update(message.id, application_id=application.id)
-        return True
+        return True, matches[0].match_string
 
 
 LABEL_TOPIC = "gmail-label-requests"
@@ -72,7 +73,7 @@ class ApplicationEnrichmentModule(AbstractEnrichmentModule):
     
     @property
     def label_text(self) -> str:
-        return "AppTracker: Application Found"
+        return "AppTracker/Application"
 
     def additional_log_data(self, message: Message) -> str:
         return f"from Email: {message.email_address.email} with Application ID: {message.application_id}"   

@@ -11,6 +11,7 @@ from sqlalchemy.orm import Session
 
 from abc import ABC, abstractmethod
 from typing import List
+import json
 
 
 class AbstractEnrichmentModule(ABC):
@@ -26,6 +27,11 @@ class AbstractEnrichmentModule(ABC):
     @abstractmethod
     def message_filter(self) -> ClauseElement:
         raise NotImplementedError("Subclasses should implement this property to return the message filter clause.")
+    
+    @property
+    @abstractmethod
+    def exhaust_filename(self) -> str:
+        raise NotImplementedError("Subclasses should implement this property to return the exhaust filename.")  
 
     def label_message(self, gateway, user_id, label_name, message_id):
         label_id = gateway.create_or_get_label(label_name=label_name)
@@ -40,6 +46,9 @@ class AbstractEnrichmentModule(ABC):
 
     def record_enrichement(self, message: Message, label: str):
         gateway = GmailGatewayFactory.build(message.user_id)
+
+        
+        
         self.label_message(
             gateway=gateway,
             user_id=message.user_id,
@@ -67,8 +76,10 @@ class AbstractEnrichmentModule(ABC):
             while batch := self._get_message_batch(db, page_size=100, page=page):
                 for message in batch:
                     considered += 1
-                    if(pattern_matcher.process_message(message)):
+                    success, match = pattern_matcher.process_message(message)
+                    if success:
                         enriched += 1
-                        self.record_enrichement(message, label=self.label_text)
+
+                        self.record_enrichement(message, label=f"{self.label_text}/{match}")
                 page += 1
         return enriched, considered
